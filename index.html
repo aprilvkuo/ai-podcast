@@ -14,6 +14,8 @@ header h1 { font-size:28px; color:#fff; margin-bottom:8px; }
 header p { color:#888; font-size:15px; line-height:1.5; }
 .subscribe { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:10px 20px; background:#f97316; color:#fff; border-radius:24px; text-decoration:none; font-size:14px; font-weight:600; transition:background .2s; }
 .subscribe:hover { background:#ea580c; }
+.subscribe-box { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.sub-hint { color:#666; font-size:12px; }
 .ep { background:#1a1a1a; border-radius:16px; padding:20px; margin-bottom:12px; transition:background .2s; }
 .ep:hover { background:#222; }
 .ep-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
@@ -38,7 +40,10 @@ header p { color:#888; font-size:15px; line-height:1.5; }
     <img src="cover.jpg" alt="蛋播">
     <h1>蛋播</h1>
     <p>Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术</p>
-    <a class="subscribe" href="feed.rss">📡 RSS 订阅</a>
+    <div class="subscribe-box">
+      <button class="subscribe" onclick="copyRSS()">📋 复制 RSS 链接</button>
+      <p class="sub-hint">复制后到 小宇宙 / Apple Podcasts / Spotify 中「添加 RSS 订阅」</p>
+    </div>
   </header>
   
     <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3">
@@ -256,6 +261,16 @@ function playEp(btn, url) {
   audio.src = url;
   player.classList.add('show');
   audio.play();
+}
+function copyRSS() {
+  const url = 'https://aprilvkuo.github.io/ai-podcast/feed.rss';
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.querySelector('.subscribe');
+    btn.textContent = '✅ 已复制！去播客App粘贴';
+    setTimeout(() => { btn.textContent = '📋 复制 RSS 链接'; }, 3000);
+  }).catch(() => {
+    prompt('手动复制 RSS 链接：', url);
+  });
 }
 </script>
 </body>
