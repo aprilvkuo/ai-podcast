@@ -3,7 +3,7 @@
   <channel>
     <title>蛋播</title>
     <description>Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术</description>
-    <link>https://aprilvkuo.github.io/ai-podcast</link>
+    <link>https://aprilvkuo.github.io/ai-podcast/</link>
     <language>zh-CN</language>
     <itunes:author>Egg</itunes:author>
     <itunes:summary>Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术</itunes:summary>
@@ -17,7 +17,7 @@
     <image>
       <url>https://aprilvkuo.github.io/ai-podcast/cover.jpg</url>
       <title>蛋播</title>
-      <link>https://aprilvkuo.github.io/ai-podcast</link>
+      <link>https://aprilvkuo.github.io/ai-podcast/</link>
     </image>
     <item>
       <title>具身智能：给机器人装一个注意力机制——蚂蚁灵波沈宇军访谈解读</title>
