@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蛋播 - Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#0f0f0f; color:#e0e0e0; min-height:100vh; }
+.container { max-width:720px; margin:0 auto; padding:24px 16px 120px; }
+header { text-align:center; padding:48px 0 32px; }
+header img { width:120px; height:120px; border-radius:24px; margin-bottom:16px; }
+header h1 { font-size:28px; color:#fff; margin-bottom:8px; }
+header p { color:#888; font-size:15px; line-height:1.5; }
+.subscribe { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:10px 20px; background:#f97316; color:#fff; border-radius:24px; text-decoration:none; font-size:14px; font-weight:600; transition:background .2s; }
+.subscribe:hover { background:#ea580c; }
+.ep { background:#1a1a1a; border-radius:16px; padding:20px; margin-bottom:12px; transition:background .2s; }
+.ep:hover { background:#222; }
+.ep-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.ep-num { background:#f97316; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; }
+.ep-date { color:#666; font-size:12px; }
+.dur { color:#666; font-size:12px; margin-left:auto; }
+.ep-title { font-size:16px; color:#fff; font-weight:600; margin-bottom:6px; line-height:1.4; }
+.source { display:block; color:#f97316; font-size:12px; margin-bottom:6px; }
+.desc { color:#999; font-size:13px; line-height:1.5; margin-bottom:10px; }
+.play-btn { background:none; border:1.5px solid #f97316; color:#f97316; padding:6px 16px; border-radius:20px; cursor:pointer; font-size:13px; transition:all .2s; }
+.play-btn:hover { background:#f97316; color:#fff; }
+.play-btn.playing { background:#f97316; color:#fff; }
+.player { position:fixed; bottom:0; left:0; right:0; background:#1a1a1a; border-top:1px solid #333; padding:12px 16px; display:none; align-items:center; gap:12px; z-index:100; }
+.player.show { display:flex; }
+.player .p-title { flex:1; font-size:13px; color:#ccc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.player audio { flex:2; height:36px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <img src="cover.jpg" alt="蛋播">
+    <h1>蛋播</h1>
+    <p>Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术</p>
+    <a class="subscribe" href="feed.rss">📡 RSS 订阅</a>
+  </header>
+  
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP18</span>
+        <span class="ep-date">2025-12-14</span>
+        <span class="dur">2:34</span>
+      </div>
+      <h3 class="ep-title">雨森创投观察1——Year of R</h3>
+      <span class="source">📎 张小珺商业访谈录 #124（203min）嘉宾：戴雨森（真格基金）</span>
+      <p class="desc">1. Return（回报）：AI 投资从"烧钱"转向"赚钱" 2. Research（研究）：新的研究突破才能带来下一波增长 3. Reality（现实）：从泡沫预期回到现实</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP17</span>
+        <span class="ep-date">2025-11-28</span>
+        <span class="dur">2:52</span>
+      </div>
+      <h3 class="ep-title">DeepMind谭捷——机器人世界模型与Sim-to-Real</h3>
+      <span class="source">📎 张小珺商业访谈录 #121（126min）嘉宾：谭捷（Google DeepMind）</span>
+      <p class="desc">投资 = 大脑（深度思考）+ 小脑（快速执行） 以前：机器人控制 = MPC（模型预测控制），需要精确数学模型 现在：深度强化学习 + Sim-to-Real = 在仿真中训练，迁移到真实世界</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP16</span>
+        <span class="ep-date">2025-09-11</span>
+        <span class="dur">2:42</span>
+      </div>
+      <h3 class="ep-title">姚顺雨Agent研究——6年OpenAI研究之路</h3>
+      <span class="source">📎 张小珺商业访谈录 #115（152min）嘉宾：姚顺雨（OpenAI研究员）</span>
+      <p class="desc">你已经搞懂了 Attention 和 KV Cache。Agent 的核心其实是同一件事的延伸： 大模型：给一段文字 → 预测下一个字（Attention 看历史） Agent：  给一段环境 → 决定下一步动作（Agent 看环境+历史→</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP15</span>
+        <span class="ep-date">2025-12-30</span>
+        <span class="dur">3:02</span>
+      </div>
+      <h3 class="ep-title">Manus出售前最后访谈——纪超的奇幻漂流</h3>
+      <span class="source">📎 张小珺商业访谈录 #128（211min）嘉宾：纪超/Peak（Manus联合创始人）</span>
+      <p class="desc">纪超的第二次创业（Maggie）押注"垂直整合"：自己训练模型 + 自己做产品 结果：GPT3 一个 prompt 就和他端到端训练的模型五五开 教训：不要在别人的赛道上和别人竞争</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP14</span>
+        <span class="ep-date">2025-02-11</span>
+        <span class="dur">3:57</span>
+      </div>
+      <h3 class="ep-title">DeepSeek 9篇论文解读——用十分之一成本追赶世界最强</h3>
+      <span class="source">📎 张小珺商业访谈录 #91（201min）嘉宾：何俊贤（香港科技大学助理教授）</span>
+      <p class="desc">国内媒体很少报道（当时都在追"超越 GPT-4"） DeepSeek LLM → DeepSeek MoE → DeepSeek V2 → DeepSeek V3 ↓                ↓                ↓   </p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP13</span>
+        <span class="ep-date">2024-09-18</span>
+        <span class="dur">5:51</span>
+      </div>
+      <h3 class="ep-title">OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿</h3>
+      <span class="source">📎 张小珺商业访谈录 #75（74min）嘉宾：吴翼（清华交叉信息院助理教授，前OpenAI研究员）</span>
+      <p class="desc">你已经理解了 Attention → KV Cache → Agent 的演进。o1 代表的是另一条线： 预训练（语言模型）→ 后训练（RLHF对齐）→ 强化学习推理（o1） ↓                    ↓          </p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep05-openaio1-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP12</span>
+        <span class="ep-date">2024-09-18</span>
+        <span class="dur">5:51</span>
+      </div>
+      <h3 class="ep-title">OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿</h3>
+      <span class="source">📎 张小珺商业访谈录 #75（74min）嘉宾：吴翼（清华交叉信息院助理教授，前OpenAI研究员）</span>
+      <p class="desc">你已经理解了 Attention → KV Cache → Agent 的演进。o1 代表的是另一条线： 预训练（语言模型）→ 后训练（RLHF对齐）→ 强化学习推理（o1） ↓                    ↓          </p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep05-openaio1-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP11</span>
+        <span class="ep-date">2026-07-16</span>
+        <span class="dur">8:40</span>
+      </div>
+      <h3 class="ep-title">Pi 柯丽一鸣 4 小时访谈解读：机器人的江湖、族谱与主角</h3>
+      <span class="source">📎 张小珺商业访谈录 #146（228min）嘉宾：柯丽一鸣（Physical Intelligence）</span>
+      <p class="desc">柯丽一鸣（Physical Intelligence联合创始人）4小时访谈：Pi的开源机器人基础模型研究路线，机器人的江湖格局、技术族谱与谁是主角，sim-to-real迁移的最新进展，以及具身智能从实验室走向真实世界的关键挑战。</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP10</span>
+        <span class="ep-date">2026-07-22</span>
+        <span class="dur">7:21</span>
+      </div>
+      <h3 class="ep-title">具身智能：给机器人装一个注意力机制——蚂蚁灵波沈宇军访谈解读</h3>
+      <span class="source">📎 张小珺商业访谈录 #147（113min）嘉宾：沈宇军（蚂蚁灵波首席科学家）</span>
+      <p class="desc">沈宇军（蚂蚁灵波首席科学家）访谈：机器人原生基础模型的设计哲学，大脑（决策）和本体（执行）的关系，预训练与数据scale up路径，师从汤晓鸥的学术传承，以及中国具身智能产业的差异化竞争策略。</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP9</span>
+        <span class="ep-date">2026-05-11</span>
+        <span class="dur">5:44</span>
+      </div>
+      <h3 class="ep-title">姚顺宇4小时访谈解读：预训练没到头、AI本质是简单的、集体主义胜利</h3>
+      <span class="source">📎 张小珺商业访谈录 #140（231min）嘉宾：姚顺宇（Anthropic/Google DeepMind）</span>
+      <p class="desc">*生活类比：就像一个练了 9 年武术的人，突然发现格斗游戏的规则更有意思，于是从零开始打游戏——但他带着武术的底层功底（物理直觉），打起游戏来和纯游戏选手完全不一样。 *为什么重要：2024-2025 年行业主流叙事是"预训练 scalin</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3">
+      <div class="ep-head">
+        <span class="ep-num">EP8</span>
+        <span class="ep-date">2026-04-24</span>
+        <span class="dur">14:11</span>
+      </div>
+      <h3 class="ep-title">大模型 Attention 机制深度调研：从 MLA 到混合稀疏（双人版）</h3>
+      <span class="source">📎 罗福莉 张小珺商业访谈录 #138（3.5h）+ DeepSeek V4/GLM 5.2/Kimi K3 技术报告</span>
+      <p class="desc">罗福莉（前DeepSeek核心研究员）3.5小时深度访谈：AI范式已然巨变，OpenClaw开源Agent框架如何改变游戏规则，Agent范式为何极度依赖后训练，算力卡的分配逻辑，以及AI组织如何实现平权。同时解读DeepSeek V4、G</p>
+      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP7</span>
+        <span class="ep-date">2026-05-18</span>
+        
+      </div>
+      <h3 class="ep-title">Freda投资札记2——Token经济学与AI软件</h3>
+      <span class="source">📎 张小珺商业访谈录 #141（83min）嘉宾：Freda（Ultimate Capital合伙人）</span>
+      <p class="desc">总投入 = 用户数 × 每用户任务数 × Token per Task × Dollar per Token 不要只看"token 消耗增长"就买入 要看"token 效率"和"客户的 ROI"</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP6</span>
+        <span class="ep-date">2025-12-24</span>
+        
+      </div>
+      <h3 class="ep-title">大模型季报8——AI War与第三范式</h3>
+      <span class="source">📎 张小珺商业访谈录 #127（78min）嘉宾：广密</span>
+      <p class="desc">AI 不是 bubble（泡沫），是 war（战争） 每个科技巨头都输不起 = 砸光最后一分钱也不下牌桌 中美国家战略 = 都输不起的军备竞赛</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP5</span>
+        <span class="ep-date">2026-05-01</span>
+        
+      </div>
+      <h3 class="ep-title">苏煜Agent技术综述</h3>
+      <span class="source">📎 张小珺商业访谈录 #139（138min）嘉宾：苏煜（Ohio State大学教授）</span>
+      <p class="desc">1. Entity：有边界的实体（不是发散的工具） 2. Environment：在某种环境中工作 3. Goal-directed：有目的地行动</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP4</span>
+        <span class="ep-date">2026-01-26</span>
+        
+      </div>
+      <h3 class="ep-title">印奇阶跃星辰——从AI1.0到2.0</h3>
+      <span class="source">📎 张小珺商业访谈录 #131（118min）嘉宾：印奇（阶跃星辰董事长）</span>
+      <p class="desc">AI 的突破 = 某个参数超过阈值后的突然涌现 AI 投资 = 寻找"阶跃函数"式突变的公司 你的持仓中，英伟达 = 阶跃函数受益者（算力需求突变）</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP3</span>
+        <span class="ep-date">2026-03-16</span>
+        
+      </div>
+      <h3 class="ep-title">谢赛宁7小时访谈——研究方法论</h3>
+      <span class="source">📎 张小珺商业访谈录 #133（405min）嘉宾：谢赛宁（NYU教授）</span>
+      <p class="desc">凯明在 FAIR 花大量时间搭建"脚手架"（baseline + 工程 + 数据管道） 脚手架 = research 的平台 脚手架不稳 = 你的发现可能是假信号</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP2</span>
+        <span class="ep-date">2026-04-15</span>
+        
+      </div>
+      <h3 class="ep-title">大模型季报9——Coding是AGI第二幕</h3>
+      <span class="source">📎 张小珺商业访谈录 #136（82min）嘉宾：广密</span>
+      <p class="desc">Coding = 新的 AI 加速器 = 类比 GPU 没有领先 coding model = 没有领先 GPU = 掉队 语言及世界，代码及方案 = 最大泛化性</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+    <div class="ep" data-url="">
+      <div class="ep-head">
+        <span class="ep-num">EP1</span>
+        <span class="ep-date">2026-06-12</span>
+        
+      </div>
+      <h3 class="ep-title">SpaceX前高管洪力德——马斯克用人观</h3>
+      <span class="source">📎 张小珺商业访谈录 #145（181min）嘉宾：洪力德</span>
+      <p class="desc">*第一原理 = 从物理定律出发，不依赖类比 火箭 = 原材料（铝、钛、碳纤维）+ 物理定律 所以火箭可以大幅降低成本（不需要"行业惯例"的 1 亿美金）</p>
+      <button class="play-btn" onclick="playEp(this, '')">▶ 播放</button>
+    </div>
+</div>
+<div class="player" id="player">
+  <span class="p-title" id="p-title"></span>
+  <audio id="audio" controls></audio>
+</div>
+<script>
+function playEp(btn, url) {
+  const player = document.getElementById('player');
+  const audio = document.getElementById('audio');
+  const pTitle = document.getElementById('p-title');
+  const title = btn.closest('.ep').querySelector('.ep-title').textContent;
+  document.querySelectorAll('.play-btn').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 播放'; });
+  btn.classList.add('playing'); btn.textContent = '⏸ 播放中';
+  pTitle.textContent = title;
+  audio.src = url;
+  player.classList.add('show');
+  audio.play();
+}
+</script>
+</body>
+</html>
