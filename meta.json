@@ -1,0 +1,188 @@
+{
+  "title": "蛋播",
+  "description": "Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术",
+  "author": "Egg",
+  "link": "https://aprilvkuo.github.io/ai-podcast/feed.rss",
+  "language": "zh-CN",
+  "voice": "zh-CN-YunyangNeural",
+  "public_url": "https://aprilvkuo.github.io/ai-podcast/feed.rss",
+  "episodes": [
+    {
+      "title": "雨森创投观察1——Year of R",
+      "file": "ep11-1-year-of-r-dual-20260725.mp3",
+      "date": "2026-07-25T20:22:28.120956+08:00",
+      "size": 924860,
+      "duration": 154,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3",
+      "summary": "雨森创投观察1——Year of R",
+      "source": "张小珺商业访谈录 #124（203min）嘉宾：戴雨森（真格基金）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "DeepMind谭捷——机器人世界模型与Sim-to-Real",
+      "file": "ep10-deepmind-sim-to-real-dual-20260725.mp3",
+      "date": "2026-07-25T20:19:48.315885+08:00",
+      "size": 1032284,
+      "duration": 172,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3",
+      "summary": "DeepMind谭捷——机器人世界模型与Sim-to-Real",
+      "source": "张小珺商业访谈录 #121（126min）嘉宾：谭捷（Google DeepMind）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "姚顺雨Agent研究——6年OpenAI研究之路",
+      "file": "ep09-agent-6openai-dual-20260725.mp3",
+      "date": "2026-07-25T20:16:38.290230+08:00",
+      "size": 973244,
+      "duration": 162,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3",
+      "summary": "姚顺雨Agent研究——6年OpenAI研究之路",
+      "source": "张小珺商业访谈录 #115（152min）嘉宾：姚顺雨（OpenAI研究员）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "Manus出售前最后访谈——纪超的奇幻漂流",
+      "file": "ep08-manus-dual-20260725.mp3",
+      "date": "2026-07-25T20:11:26.785756+08:00",
+      "size": 1093340,
+      "duration": 182,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3",
+      "summary": "Manus出售前最后访谈——纪超的奇幻漂流",
+      "source": "张小珺商业访谈录 #128（211min）嘉宾：纪超/Peak（Manus联合创始人）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "DeepSeek 9篇论文解读——用十分之一成本追赶世界最强",
+      "file": "ep07-deepseek-9-dual-20260725.mp3",
+      "date": "2026-07-25T19:46:57.761039+08:00",
+      "size": 1426700,
+      "duration": 237,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3",
+      "summary": "DeepSeek 9篇论文解读——用十分之一成本追赶世界最强",
+      "source": "张小珺商业访谈录 #91（201min）嘉宾：何俊贤（香港科技大学助理教授）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿",
+      "file": "ep06-openaio1-dual-20260725.mp3",
+      "date": "2026-07-25T19:36:17.085586+08:00",
+      "size": 2110556,
+      "duration": 351,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3",
+      "summary": "OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿",
+      "source": "张小珺商业访谈录 #75（74min）嘉宾：吴翼（清华交叉信息院助理教授，前OpenAI研究员）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿",
+      "file": "ep05-openaio1-dual-20260725.mp3",
+      "date": "2026-07-25T19:34:05.114088+08:00",
+      "size": 2110556,
+      "duration": 351,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep05-openaio1-dual-20260725.mp3",
+      "summary": "OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿",
+      "source": "张小珺商业访谈录 #75（74min）嘉宾：吴翼（清华交叉信息院助理教授，前OpenAI研究员）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "姚顺宇4小时访谈解读：预训练没到头、AI本质是简单的、集体主义胜利",
+      "file": "ep04-yao-shunyu-interview-dual-20260725.mp3",
+      "date": "2026-07-25T15:00:44.272962+08:00",
+      "size": 2069660,
+      "duration": 344,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3",
+      "summary": "清华物理博士姚顺宇，从Anthropic到Google DeepMind。六个核心判断：预训练没到头、预训练也是强化学习、AI本质是简单的、硬蒸vs聪明的蒸、个人英雄主义已过去、物理直觉的价值。用做菜、学英语、键值缓存来类比理解。",
+      "source": "张小珺商业访谈录 #140（231min）嘉宾：姚顺宇（Anthropic/Google DeepMind）",
+      "original_date": "2026-05-11"
+    },
+    {
+      "title": "Pi 柯丽一鸣 4 小时访谈解读：机器人的江湖、族谱与主角",
+      "file": "ep03-pi-interview-dual-20260725.mp3",
+      "date": "2026-07-25T19:00:00+0800",
+      "size": 3125180,
+      "duration": 520,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3",
+      "summary": "Physical Intelligence研究科学家柯丽一鸣访谈解读。π0到π0.7四代演进，行为克隆到强化学习到自主 rollout。心理学背景如何做好奖励函数，机器人江湖族谱与主角的武侠类比。",
+      "source": "张小珺商业访谈录 #146（228min）嘉宾：柯丽一鸣（Physical Intelligence）",
+      "original_date": "2026-07-16"
+    },
+    {
+      "title": "具身智能：给机器人装一个注意力机制——蚂蚁灵波沈宇军访谈解读",
+      "file": "ep02-embodied-ai-dual-20260725.mp3",
+      "date": "2026-07-25T18:30:00+0800",
+      "size": 2646236,
+      "duration": 441,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3",
+      "summary": "用注意力机制理解具身智能。VLA是机器人的注意力，数据瓶颈是机器人的KV Cache。蚂蚁灵波沈宇军：具身智能还没到GPT1时刻，需百万小时数据，预计明年中。",
+      "source": "张小珺商业访谈录 #147（113min）嘉宾：沈宇军（蚂蚁灵波首席科学家）",
+      "original_date": "2026-07-22"
+    },
+    {
+      "title": "大模型 Attention 机制深度调研：从 MLA 到混合稀疏（双人版）",
+      "file": "ep01-attention-mechanism-dual-20260724.mp3",
+      "date": "2026-07-24T23:19:37+0800",
+      "size": 5108976,
+      "duration": 851,
+      "url": "https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3",
+      "summary": "从最基础的多头注意力到最新的压缩稀疏注意力，完整梳理六代 Attention 演进。KV Cache 是什么问题，MLA 为什么在 Agent 时代失效，三条技术路线如何选择。",
+      "source": "罗福莉 张小珺商业访谈录 #138（3.5h）+ DeepSeek V4/GLM 5.2/Kimi K3 技术报告",
+      "original_date": "2026-05-25"
+    },
+    {
+      "file": "ep11-dual-20260725.mp3",
+      "title": "Freda投资札记2——Token经济学与AI软件",
+      "source": "张小珺商业访谈录 #141（83min）嘉宾：Freda（Ultimate Capital合伙人）",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 952364
+    },
+    {
+      "file": "ep12-dual-20260725.mp3",
+      "title": "大模型季报8——AI War与第三范式",
+      "source": "张小珺商业访谈录 #127（78min）嘉宾：广密",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 998444
+    },
+    {
+      "file": "ep13-dual-20260725.mp3",
+      "title": "苏煜Agent技术综述",
+      "source": "张小珺商业访谈录 #139（138min）嘉宾：苏煜（Ohio State大学教授）",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 738236
+    },
+    {
+      "file": "ep14-dual-20260725.mp3",
+      "title": "印奇阶跃星辰——从AI1.0到2.0",
+      "source": "张小珺商业访谈录 #131（118min）嘉宾：印奇（阶跃星辰董事长）",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 683516
+    },
+    {
+      "file": "ep15-dual-20260725.mp3",
+      "title": "谢赛宁7小时访谈——研究方法论",
+      "source": "张小珺商业访谈录 #133（405min）嘉宾：谢赛宁（NYU教授）",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 695468
+    },
+    {
+      "file": "ep16-dual-20260725.mp3",
+      "title": "大模型季报9——Coding是AGI第二幕",
+      "source": "张小珺商业访谈录 #136（82min）嘉宾：广密",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 820460
+    },
+    {
+      "file": "ep17-dual-20260725.mp3",
+      "title": "SpaceX前高管洪力德——马斯克用人观",
+      "source": "张小珺商业访谈录 #145（181min）嘉宾：洪力德",
+      "original_date": "2026-05-11",
+      "voice": "dual",
+      "size": 755516
+    }
+  ]
+}
