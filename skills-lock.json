@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "skills": {
+    "qianwen-audio-tts": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/audio/qianwen-audio-tts/SKILL.md",
+      "computedHash": "41be3857ad6500ee023945dcba0937359c6c1160281eb267ee1fa3cac9fc9b8d"
+    },
+    "qianwen-image-generation": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/image/qianwen-image-generation/SKILL.md",
+      "computedHash": "a0134d6ba2e460f50ed27827c261531d9d6aabeb0dd687689556c9ae06f37995"
+    },
+    "qianwen-model-selector": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/models/qianwen-model-selector/SKILL.md",
+      "computedHash": "11e4f6125ef9434737eaf65fcd6936fbf2ebcfce359a511aca52271054ad98ef"
+    },
+    "qianwen-ops-auth": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/ops/qianwen-ops-auth/SKILL.md",
+      "computedHash": "8d7f6ad8bd7b52549f96f8e9108c1b87863ee88966828764038e5a5e943a6b39"
+    },
+    "qianwen-text": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/text/qianwen-text/SKILL.md",
+      "computedHash": "fa1943a57c91a36292c810368aefb3e49b59646c8e1776cd2ff6ce79914bad2d"
+    },
+    "qianwen-update-check": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/ops/qianwen-update-check/SKILL.md",
+      "computedHash": "dce808a6c8d840bc84df3bd208073b0cb11bb72b6945401e265baac8fdefdc19"
+    },
+    "qianwen-usage": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/usage/qianwen-usage/SKILL.md",
+      "computedHash": "3444227e0e835b1a03b1cff952173fd4eb7a5700750ce893142d3da56d691f73"
+    },
+    "qianwen-video-generation": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/video/qianwen-video-generation/SKILL.md",
+      "computedHash": "a3cd8f7125a6db0b0a9818bce5ad1eb9d60f1bf2c9959945cbb3f921767c710d"
+    },
+    "qianwen-vision": {
+      "source": "QianWen-AI/qianwen-ai",
+      "sourceType": "github",
+      "skillPath": "skills/vision/qianwen-vision/SKILL.md",
+      "computedHash": "79e36b875d38756d7a50acaa3e54f6fbdff8e0dbadf8bbe43d5928a7aa599c12"
+    }
+  }
+}

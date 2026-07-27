@@ -8,6 +8,17 @@
   "public_url": "https://aprilvkuo.github.io/ai-podcast/feed.rss",
   "episodes": [
     {
+      "file": "ep19-liang-wenfeng-meeting-dual-20260726.mp3",
+      "title": "梁文锋4小时投资人会议——克制、开源与AGI路线图",
+      "source": "佩妮聊创投（小宇宙）#148 | DeepSeek创始人梁文锋内部投资人会议（4h会议纪要AI还原版，95min）",
+      "original_date": "2026-07-22",
+      "_yyyymmdd": "20260722",
+      "video_id": "6a6188566356eb2d9be6fcda",
+      "voice": "dual",
+      "size": 2630540,
+      "description": "DeepSeek创始人梁文锋内部投资人会议核心解读：克制哲学（10个月回本定价/纳什均衡）、开源战略（成本护城河/让利换凝聚力）、芝麻与西瓜（时间偏好/延迟满足）、愿景驱动组织（无KPI/平凡人叙事）、AGI路线图（持续学习是关键瓶颈）、资源约束（4倍加2年差距）。"
+    },
+    {
       "file": "ep18-liang-wenfeng-meeting-dual-20260726.mp3",
       "title": "梁文锋4小时投资人会议——克制、开源与AGI路线图",
       "source": "佩妮聊创投（小宇宙）#148 | DeepSeek创始人梁文锋内部投资人会议（4h会议纪要AI还原版，95min）",
