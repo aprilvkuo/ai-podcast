@@ -2,11 +2,22 @@
   "title": "蛋播",
   "description": "Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术",
   "author": "Egg",
-  "link": "https://aprilvkuo.github.io/ai-podcast/feed.rss",
+  "link": "https://username.github.io/podcast-repo/feed.rss",
   "language": "zh-CN",
   "voice": "zh-CN-YunyangNeural",
   "public_url": "https://aprilvkuo.github.io/ai-podcast/feed.rss",
   "episodes": [
+    {
+      "title": "和杨植麟时隔1年的对话：K2、Agentic LLM、缸中之脑和站在无限的开端",
+      "file": "ep21-1-k2-agentic-llm-dual-20260729.mp3",
+      "date": "2026-07-29T00:06:57.672448+08:00",
+      "size": 3658868,
+      "duration": 457,
+      "url": "https://username.github.io/podcast-repo/episodes/ep21-1-k2-agentic-llm-dual-20260729.mp3",
+      "summary": "和杨植麟时隔1年的对话：K2、Agentic LLM、缸中之脑和站在无限的开端",
+      "source": "张小珺商业访谈录 #113（101分钟）嘉宾：杨植麟（月之暗面CEO）",
+      "original_date": "2025-08-27"
+    },
     {
       "file": "ep19-liang-wenfeng-meeting-dual-20260726.mp3",
       "title": "梁文锋4小时投资人会议——克制、开源与AGI路线图",
