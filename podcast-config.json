@@ -1,0 +1,16 @@
+{
+  "podcast_name": "蛋播",
+  "author": "Egg",
+  "github_repo": "aprilvkuo/ai-podcast",
+  "rss_url": "https://aprilvkuo.github.io/ai-podcast/feed.rss",
+  "pages_url": "https://aprilvkuo.github.io/ai-podcast/",
+  "data_dir": "~/.claude/podcast",
+  "notes_dir": "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/life-system/vault/20 Knowledge/Notes/GenAI Guide",
+  "voices": {
+    "host": "zh-CN-YunyangNeural",
+    "guest": "zh-CN-XiaoxiaoNeural",
+    "default": "zh-CN-YunyangNeural"
+  },
+  "email": "aprilvkuo@live.com",
+  "_note": "这是真实已部署的播客配置。RSS 地址唯一且固定，禁止编造任何其他地址（尤其是 IP 地址形式）。如需变更，先跑 podcast.sh connect 再更新本文件。"
+}
