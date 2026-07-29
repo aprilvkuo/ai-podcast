@@ -2,7 +2,7 @@
 
 - **来源**: /Users/egg/.claude/podcast/xyz_downloads/ep117_xiaoyuzhou.m4a
 - **时长**: 04:22:37
-- **转录时间**: 2026-07-28 16:31
+- **转录时间**: 2026-07-29 11:43
 - **模型**: SenseVoice-Small (本地)
 - **片段**: 02:11:18 - 04:22:37
 
