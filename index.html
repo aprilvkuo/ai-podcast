@@ -6,53 +6,65 @@
 <title>蛋播</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#0f0f0f; color:#e0e0e0; min-height:100vh; }
-.container { max-width:720px; margin:0 auto; padding:24px 16px 120px; }
-header { text-align:center; padding:48px 0 32px; }
-header img { width:120px; height:120px; border-radius:24px; margin-bottom:16px; }
-header h1 { font-size:28px; color:#fff; margin-bottom:8px; }
-header p { color:#888; font-size:15px; line-height:1.5; }
-.subscribe { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:10px 20px; background:#f97316; color:#fff; border-radius:24px; text-decoration:none; font-size:14px; font-weight:600; transition:background .2s; }
-.subscribe:hover { background:#ea580c; }
-.subscribe-box { display:flex; flex-direction:column; align-items:center; gap:8px; }
-.sub-hint { color:#666; font-size:12px; }
-.ep { background:#1a1a1a; border-radius:16px; padding:20px; margin-bottom:12px; transition:background .2s; }
-.ep:hover { background:#222; }
-.ep-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-.ep-num { background:#f97316; color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; }
-.ep-date { color:#666; font-size:12px; }
-.dur { color:#666; font-size:12px; margin-left:auto; }
-.ep-title { font-size:16px; color:#fff; font-weight:600; margin-bottom:6px; line-height:1.4; }
-.source { display:block; color:#f97316; font-size:12px; margin-bottom:6px; }
-.desc { color:#999; font-size:13px; line-height:1.5; margin-bottom:10px; }
-.play-btn { background:none; border:1.5px solid #f97316; color:#f97316; padding:6px 16px; border-radius:20px; cursor:pointer; font-size:13px; transition:all .2s; }
-.play-btn:hover { background:#f97316; color:#fff; }
-.play-btn.playing { background:#f97316; color:#fff; }
-.expand-btn { background:none; border:1.5px solid #4a9eff; color:#4a9eff; padding:6px 16px; border-radius:20px; cursor:pointer; font-size:13px; transition:all .2s; margin-left:8px; }
-.expand-btn:hover { background:#4a9eff; color:#fff; }
-.expand-btn.active { background:#4a9eff; color:#fff; }
-.note-content { margin-top:16px; padding:20px; background:#0d0d0d; border-radius:12px; border:1px solid #333; }
-.note-inner { font-size:14px; line-height:1.7; color:#bbb; }
-.note-inner h2 { color:#fff; font-size:18px; margin:20px 0 10px; }
-.note-inner h3 { color:#e0e0e0; font-size:16px; margin:16px 0 8px; }
-.note-inner h4 { color:#ccc; font-size:14px; margin:12px 0 6px; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",Roboto,sans-serif; background:#fafafa; color:#222; min-height:100vh; -webkit-font-smoothing:antialiased; }
+.container { max-width:760px; margin:0 auto; padding:24px 16px 130px; }
+header { text-align:center; padding:40px 0 28px; }
+header img { width:96px; height:96px; border-radius:22px; margin-bottom:14px; box-shadow:0 6px 20px rgba(0,0,0,.08); }
+header h1 { font-size:26px; color:#111; margin-bottom:6px; letter-spacing:.5px; }
+header p { color:#666; font-size:14px; line-height:1.6; }
+.subscribe-box { display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:18px; }
+.subscribe { display:inline-flex; align-items:center; gap:8px; padding:10px 24px; background:#f97316; color:#fff; border:none; border-radius:24px; text-decoration:none; font-size:14px; font-weight:600; cursor:pointer; transition:transform .15s,box-shadow .15s; box-shadow:0 4px 14px rgba(249,115,22,.25); }
+.subscribe:hover { background:#ea580c; transform:translateY(-1px); }
+.sub-hint { color:#999; font-size:12px; }
+.ep { display:grid; grid-template-columns:64px 1fr auto; grid-template-areas:"thumb info play" "thumb info expand" "note note note"; align-items:center; gap:12px 14px; background:#fff; border-radius:14px; padding:14px 16px; margin-bottom:10px; border:1px solid #f0f0f0; box-shadow:0 1px 2px rgba(0,0,0,.03); transition:box-shadow .15s,transform .15s,border-color .15s; cursor:pointer; }
+.ep:hover { box-shadow:0 4px 14px rgba(0,0,0,.06); border-color:#e8e8e8; transform:translateY(-1px); }
+.ep .thumb { grid-area:thumb; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#111; font-size:20px; font-weight:800; letter-spacing:.5px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.04); }
+.ep .info { grid-area:info; min-width:0; }
+.ep .play-btn { grid-area:play; justify-self:end; align-self:center; }
+.ep-title { font-size:16px; color:#111; font-weight:600; line-height:1.4; margin-bottom:4px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.source { display:block; color:#9a3412; font-size:12px; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.desc { color:#666; font-size:13px; line-height:1.5; margin-bottom:4px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.meta { color:#999; font-size:12px; display:flex; align-items:center; gap:6px; }
+.meta-dot { color:#d0d0d0; }
+.actions { display:contents; }
+.play-btn { grid-area:play; width:46px; height:46px; border-radius:50%; border:none; background:#f97316; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s,transform .15s; box-shadow:0 3px 10px rgba(249,115,22,.25); }
+.play-btn:hover { background:#ea580c; transform:scale(1.05); }
+.play-btn.playing { background:#ea580c; }
+.expand-btn { grid-area:expand; justify-self:end; background:none; border:1px solid #e0e0e0; color:#555; padding:4px 12px; border-radius:16px; cursor:pointer; font-size:12px; transition:all .15s; white-space:nowrap; }
+.expand-btn:hover { border-color:#4a9eff; color:#4a9eff; background:#f5f9ff; }
+.expand-btn.active { background:#4a9eff; border-color:#4a9eff; color:#fff; }
+.note-content { grid-area:note; width:100%; margin-top:8px; padding:14px 4px 2px; border-top:1px solid #f0f0f0; }
+.note-inner { font-size:14px; line-height:1.8; color:#333; }
+.note-inner h2 { color:#111; font-size:18px; margin:20px 0 10px; }
+.note-inner h3 { color:#1a1a1a; font-size:16px; margin:16px 0 8px; }
+.note-inner h4 { color:#222; font-size:14px; margin:12px 0 6px; }
 .note-inner p { margin:8px 0; }
 .note-inner ul { margin:8px 0; padding-left:20px; }
 .note-inner li { margin:4px 0; }
-.note-inner blockquote { border-left:3px solid #f97316; padding-left:12px; color:#999; margin:10px 0; }
-.note-inner pre { background:#1a1a1a; padding:12px; border-radius:8px; overflow-x:auto; margin:10px 0; }
-.note-inner code { font-family:monospace; font-size:13px; }
-.note-inner b { color:#fff; }
-.player { position:fixed; bottom:0; left:0; right:0; background:#1a1a1a; border-top:1px solid #333; padding:12px 16px; display:none; align-items:center; gap:12px; z-index:100; }
+.note-inner blockquote { border-left:3px solid #f97316; padding-left:12px; color:#555; margin:10px 0; background:#fff7ed; padding:10px 12px; border-radius:0 8px 8px 0; }
+.note-inner pre { background:#f6f6f6; padding:12px; border-radius:8px; overflow-x:auto; margin:10px 0; }
+.note-inner code { font-family:monospace; font-size:13px; color:#c62828; }
+.note-inner b { color:#111; }
+.player { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid #eee; padding:12px 16px; display:none; align-items:center; gap:12px; z-index:100; box-shadow:0 -4px 20px rgba(0,0,0,.06); }
 .player.show { display:flex; }
-.player .p-title { flex:1; font-size:13px; color:#ccc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.player audio { flex:2; height:36px; }
+.player .p-title { flex:1; font-size:13px; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.player audio { flex:2; height:40px; }
+@media (max-width:520px) {
+  .container { padding:16px 10px 130px; }
+  .ep { grid-template-columns:52px 1fr auto; gap:10px 10px; padding:12px; }
+  .ep .thumb { width:52px; height:52px; font-size:16px; }
+  .ep-title { font-size:15px; }
+  .play-btn { width:40px; height:40px; font-size:15px; }
+  header img { width:80px; height:80px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <img src="cover.jpg" alt="蛋播">
+    <div class="subscribe-box">
+      <img src="cover.jpg" alt="蛋播">
+    </div>
     <h1>蛋播</h1>
     <p>Egg 的 AI 技术播客，用类比和原理剖析理解前沿技术</p>
     <div class="subscribe-box">
@@ -61,40 +73,42 @@ header p { color:#888; font-size:15px; line-height:1.5; }
     </div>
   </header>
 
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep149-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP20</span>
-        <span class="ep-date">2026-07-27</span>
-        <span class="dur">~15min</span>
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep149-dual-20260729.mp3" data-index="0">
+      <div class="thumb" style="background:linear-gradient(0deg, hsl(18, 72%, 86%), hsl(58, 78%, 66%))">#20</div>
+      <div class="info">
+        <h3 class="ep-title">22580：从 GPT-2 到 Kimi K3 的架构演进</h3>
+        <span class="source">📎 waterloo_intern（@ali）技术长文《22580: From GPT2 to Kimi3, Explained》</span>
+        <div class="meta"><span class="ep-date">2026-07-27</span><span class="meta-dot">·</span><span class="dur">~15min</span></div>
       </div>
-      <h3 class="ep-title">22580：从 GPT-2 到 Kimi K3 的架构演进</h3>
-      <span class="source">📎 waterloo_intern（@ali）技术长文《22580: From GPT2 to Kimi3, Explained》</span>
-      <p class="desc"></p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep149-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep149-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <p>从 GPT-2（2019，1.24亿参数）到 Kimi K3（2026，2.8万亿参数），参数规模7年增长 22580 倍。但这不只是"堆参数"——每一步架构变革都在解决同一个问题：模型如何存储、更新和检索信息。</p>
+<p>从 GPT-2（2019，1.24亿参数）到 Kimi K3（2026，2.8万亿参数），参数规模7年增长 22580 倍。但这不只是"堆参数"——每一步架构变革都在解决同一个问题：模型如何存储、更新和检索信息。</p>
           <p><b>核心演进链：</b>GPT-2（完整保存KV cache）→ Linear Attention（压缩成固定状态）→ DeltaNet（先读后写，精确改单条记忆）→ Gated DeltaNet（遗忘门控）→ Kimi Linear/KDA（逐通道遗忘）→ Kimi K3（系统级组合）。</p>
           <p><b>Kimi K3 关键设计：</b>每12层插入 Attention Residuals（深度方向选择性回看）；KDA（循环记忆）+ MLA（全局检索）组合；898个专家MoE（每token选16个）；SiTU激活函数。</p>
           <p><b>核心洞察：</b>大模型竞争的关键不是"更大的模型"，而是怎样用更少的计算，实现更灵活、更精确的记忆与检索。</p>
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep19-liang-wenfeng-meeting-dual-20260726.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP19</span>
-        <span class="ep-date">2026-07-22</span>
-        <span class="dur">7:18</span>
-      </div>
-      <h3 class="ep-title">梁文锋4小时投资人会议——克制、开源与AGI路线图</h3>
-      <span class="source">📎 佩妮聊创投（小宇宙）#148 | DeepSeek创始人梁文锋内部投资人会议（4h会议纪要AI还原版，95min）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep19-liang-wenfeng-meeting-dual-20260726.mp3" data-index="1">
+      <div class="thumb" style="background:linear-gradient(29deg, hsl(210, 72%, 89%), hsl(250, 78%, 70%))">#19</div>
+      <div class="info">
+        <h3 class="ep-title">梁文锋4小时投资人会议——克制、开源与AGI路线图</h3>
+        <span class="source">📎 佩妮聊创投（小宇宙）#148 | DeepSeek创始人梁文锋内部投资人会议（4h会议纪要AI还原版，95min）</span>
       <p class="desc">DeepSeek创始人梁文锋内部投资人会议核心解读：克制哲学（10个月回本定价/纳什均衡）、开源战略（成本护城河/让利换凝聚力）、芝麻与西瓜（时间偏好/延迟满足）、愿景驱动组织（无KPI/平凡人叙事）、AGI路线图（持续学习是关键瓶颈）、资源约束（4倍加2年差距）。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep19-liang-wenfeng-meeting-dual-20260726.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-07-22</span><span class="meta-dot">·</span><span class="dur">7:18</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep19-liang-wenfeng-meeting-dual-20260726.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>梁文锋 4 小时投资人会议 — 学习解读</h2>
+<h2>梁文锋 4 小时投资人会议 — 学习解读</h2>
 <br/>
 <blockquote>来源：佩妮聊创投（小宇宙）</blockquote>
 <blockquote>嘉宾：梁文锋（DeepSeek 创始人）</blockquote>
@@ -376,20 +390,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP18</span>
-        <span class="ep-date">2026-07-22</span>
-        <span class="dur">7:21</span>
-      </div>
-      <h3 class="ep-title">具身智能：给机器人装一个注意力机制——蚂蚁灵波沈宇军访谈解读</h3>
-      <span class="source">📎 张小珺商业访谈录 #147（113min）嘉宾：沈宇军（蚂蚁灵波首席科学家）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3" data-index="2">
+      <div class="thumb" style="background:linear-gradient(58deg, hsl(160, 72%, 92%), hsl(200, 78%, 74%))">#18</div>
+      <div class="info">
+        <h3 class="ep-title">具身智能：给机器人装一个注意力机制——蚂蚁灵波沈宇军访谈解读</h3>
+        <span class="source">📎 张小珺商业访谈录 #147（113min）嘉宾：沈宇军（蚂蚁灵波首席科学家）</span>
       <p class="desc">沈宇军（蚂蚁灵波首席科学家）访谈：机器人原生基础模型的设计哲学，大脑（决策）和本体（执行）的关系，预训练与数据scale up路径，师从汤晓鸥的学术传承，以及中国具身智能产业的差异化竞争策略。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-07-22</span><span class="meta-dot">·</span><span class="dur">7:21</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep02-embodied-ai-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>具身原生基础模型：机器人的大脑该从哪里长出来 — 学习解读</h2>
+<h2>具身原生基础模型：机器人的大脑该从哪里长出来 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #147</blockquote>
 <blockquote>嘉宾：沈宇军（蚂蚁灵波首席科学家，师从汤晓鸥）</blockquote>
@@ -757,20 +773,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP17</span>
-        <span class="ep-date">2026-07-16</span>
-        <span class="dur">8:40</span>
-      </div>
-      <h3 class="ep-title">Pi 柯丽一鸣 4 小时访谈解读：机器人的江湖、族谱与主角</h3>
-      <span class="source">📎 张小珺商业访谈录 #146（228min）嘉宾：柯丽一鸣（Physical Intelligence）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3" data-index="3">
+      <div class="thumb" style="background:linear-gradient(87deg, hsl(280, 72%, 95%), hsl(320, 78%, 78%))">#17</div>
+      <div class="info">
+        <h3 class="ep-title">Pi 柯丽一鸣 4 小时访谈解读：机器人的江湖、族谱与主角</h3>
+        <span class="source">📎 张小珺商业访谈录 #146（228min）嘉宾：柯丽一鸣（Physical Intelligence）</span>
       <p class="desc">柯丽一鸣（Physical Intelligence联合创始人）4小时访谈：Pi的开源机器人基础模型研究路线，机器人的江湖格局、技术族谱与谁是主角，sim-to-real迁移的最新进展，以及具身智能从实验室走向真实世界的关键挑战。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-07-16</span><span class="meta-dot">·</span><span class="dur">8:40</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep03-pi-interview-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>机器人的江湖、族谱与主角：Physical Intelligence的开源之路 — 学习解读</h2>
+<h2>机器人的江湖、族谱与主角：Physical Intelligence的开源之路 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #146（4小时）</blockquote>
 <blockquote>嘉宾：柯丽一鸣（Physical Intelligence研究员，π₀、π₀.₅论文作者）</blockquote>
@@ -1140,20 +1158,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep17-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP16</span>
-        <span class="ep-date">2026-06-12</span>
-        <span class="dur">2:05</span>
-      </div>
-      <h3 class="ep-title">SpaceX前高管洪力德——马斯克用人观</h3>
-      <span class="source">📎 张小珺商业访谈录 #145（181min）嘉宾：洪力德</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep17-dual-20260725.mp3" data-index="4">
+      <div class="thumb" style="background:linear-gradient(116deg, hsl(40, 72%, 86%), hsl(80, 78%, 82%))">#16</div>
+      <div class="info">
+        <h3 class="ep-title">SpaceX前高管洪力德——马斯克用人观</h3>
+        <span class="source">📎 张小珺商业访谈录 #145（181min）嘉宾：洪力德</span>
       <p class="desc">*第一原理 = 从物理定律出发，不依赖类比 火箭 = 原材料（铝、钛、碳纤维）+ 物理定律 所以火箭可以大幅降低成本（不需要&quot;行业惯例&quot;的 1 亿美金）</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep17-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-06-12</span><span class="meta-dot">·</span><span class="dur">2:05</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep17-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>第一原理造火箭：SpaceX的开发史与马斯克用人观 — 学习解读</h2>
+<h2>第一原理造火箭：SpaceX的开发史与马斯克用人观 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #145（3小时1分）</blockquote>
 <blockquote>嘉宾：洪力德（Louis Hong，SpaceX前火箭首席制造工程师 / Aries Fund GP）</blockquote>
@@ -1486,17 +1506,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep145-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP145</span>
-        <span class="ep-date">2026-06-12</span>
-        <span class="dur">21:04</span>
-      </div>
-      <h3 class="ep-title">145. 口述SpaceX开发史：和前高管洪力德聊，马斯克用人观、最大IPO、太空与AI、人类文明扩张前奏？</h3>
-      <span class="source">📎 张小珺商业访谈录 #145（3小时1分）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep145-dual-20260728.mp3" data-index="5">
+      <div class="thumb" style="background:linear-gradient(145deg, hsl(320, 72%, 89%), hsl(0, 78%, 66%))">#145</div>
+      <div class="info">
+        <h3 class="ep-title">145. 口述SpaceX开发史：和前高管洪力德聊，马斯克用人观、最大IPO、太空与AI、人类文明扩张前奏？</h3>
+        <span class="source">📎 张小珺商业访谈录 #145（3小时1分）</span>
       <p class="desc">火箭不是目的，是手段——把不可能变成" just engineering"的过程，才是真正的革命。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep145-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-06-12</span><span class="meta-dot">·</span><span class="dur">21:04</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep145-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>第一原理造火箭：SpaceX的开发史与马斯克用人观 — 学习解读</h2>
@@ -1846,21 +1868,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>火箭只是手段，可乐罐才是答案——当你把&quot;不可能&quot;的标签撕掉，剩下的就只是工程问题。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep144-dual-20260731.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP144</span>
-        <span class="ep-date">2026-06-08</span>
-        <span class="dur">21:04</span>
-      </div>
-      <h3 class="ep-title">144. 对阳萌的4小时访谈：消费电子死与生、第三类公司、端侧模型、产品方法、游戏模式</h3>
-      <span class="source">📎 张小珺商业访谈录 ep144</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep144-dual-20260731.mp3" data-index="6">
+      <div class="thumb" style="background:linear-gradient(174deg, hsl(90, 72%, 92%), hsl(130, 78%, 70%))">#144</div>
+      <div class="info">
+        <h3 class="ep-title">144. 对阳萌的4小时访谈：消费电子死与生、第三类公司、端侧模型、产品方法、游戏模式</h3>
+        <span class="source">📎 张小珺商业访谈录 ep144</span>
       <p class="desc">一个Google工程师从卖充电宝起家，做了15年"不太fancy"的生意。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep144-dual-20260731.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-06-08</span><span class="meta-dot">·</span><span class="dur">21:04</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep144-dual-20260731.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>消费电子的死与生 — 阳萌（安克创新创始人） — 学习解读</h2>
@@ -2143,21 +2166,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>消费电子里，产品必死、品类轮换，唯一能穿越周期的，是那个不断用新技术、把人群细分的独特价值持续交付出来的系统——这才叫&quot;养儿子&quot;，而不是&quot;养过年猪&quot;。</p>
 <br/>
 <p>阳萌用15年easy模式的积累，换了今天hard模式的入场券，赌的正是&quot;AI会把所有产品重新做一遍&quot;这艘即将到来的浪。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep143-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP143</span>
-        <span class="ep-date">2026-05-28</span>
-        <span class="dur">12:47</span>
-      </div>
-      <h3 class="ep-title">143. 对何小鹏的第二次访谈：更大赌注、人形机器人Iron诞生、那场意外、技术剧变下CEO、GX和缝合怪</h3>
-      <span class="source">📎 张小珺商业访谈录 ep143</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep143-dual-20260729.mp3" data-index="7">
+      <div class="thumb" style="background:linear-gradient(203deg, hsl(200, 72%, 95%), hsl(240, 78%, 74%))">#143</div>
+      <div class="info">
+        <h3 class="ep-title">143. 对何小鹏的第二次访谈：更大赌注、人形机器人Iron诞生、那场意外、技术剧变下CEO、GX和缝合怪</h3>
+        <span class="source">📎 张小珺商业访谈录 ep143</span>
       <p class="desc">这是何小鹏时隔一年第二次走进商业访谈录。上次他把造车形容成"在血海里游泳"，这次他讲的是血海更深处的战场——人形机器人。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep143-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-28</span><span class="meta-dot">·</span><span class="dur">12:47</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep143-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>何小鹏第二次访谈：人形机器人Iron — 学习解读</h2>
@@ -2465,21 +2489,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>何小鹏这期讲透了物理AI转型的完整逻辑：规则叠加只会做出更强的&quot;缝合怪&quot;，永远到达不了&quot;无限聪明&quot;的彼岸，所以他要停掉几十亿的旧体系，去赌一条最难却壁垒最深的路；在这条路上，token不是度量衡、长板不是胜负手、demo不是护城河，真正稀缺的是面对雪地草地的泛化能力、是对老人小孩都可信的信任、以及一个&quot;收敛了赌注却仍敢下注&quot;的CEO——因为最难的路，恰恰是敢走的人最少、也因此最值得走的路。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep142-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP142</span>
-        <span class="ep-date">2026-05-27</span>
-        <span class="dur">11:40</span>
-      </div>
-      <h3 class="ep-title">142. 雨森的创投观察第2集：Harness、下一个字节、2026大机会和Stanley Druckenmiller</h3>
-      <span class="source">📎 张小珺商业访谈录 #142（2小时19分）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep142-dual-20260728.mp3" data-index="8">
+      <div class="thumb" style="background:linear-gradient(232deg, hsl(18, 72%, 86%), hsl(58, 78%, 78%))">#142</div>
+      <div class="info">
+        <h3 class="ep-title">142. 雨森的创投观察第2集：Harness、下一个字节、2026大机会和Stanley Druckenmiller</h3>
+        <span class="source">📎 张小珺商业访谈录 #142（2小时19分）</span>
       <p class="desc">模型是发动机，Harness是整车——用户忠诚的是车，不是发动机。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep142-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-27</span><span class="meta-dot">·</span><span class="dur">11:40</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep142-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Harness工程：AI时代的操作系统 — 学习解读</h2>
@@ -2785,24 +2810,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>模型是CPU，Harness是操作系统——用户换CPU不眨眼，换操作系统要命。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep20-freda-token-economics-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP15</span>
-        <span class="ep-date">2026-05-18</span>
-        <span class="dur">2:38</span>
-      </div>
-      <h3 class="ep-title">Freda投资札记2——Token经济学与AI软件</h3>
-      <span class="source">📎 张小珺商业访谈录 #141（83min）嘉宾：Freda（Ultimate Capital合伙人）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep20-freda-token-economics-dual-20260725.mp3" data-index="9">
+      <div class="thumb" style="background:linear-gradient(261deg, hsl(210, 72%, 89%), hsl(250, 78%, 82%))">#15</div>
+      <div class="info">
+        <h3 class="ep-title">Freda投资札记2——Token经济学与AI软件</h3>
+        <span class="source">📎 张小珺商业访谈录 #141（83min）嘉宾：Freda（Ultimate Capital合伙人）</span>
       <p class="desc">总投入 = 用户数 × 每用户任务数 × Token per Task × Dollar per Token 不要只看&quot;token 消耗增长&quot;就买入 要看&quot;token 效率&quot;和&quot;客户的 ROI&quot;</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep20-freda-token-economics-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-18</span><span class="meta-dot">·</span><span class="dur">2:38</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep20-freda-token-economics-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>Token经济学：AI时代的度量衡 — 学习解读</h2>
+<h2>Token经济学：AI时代的度量衡 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #141（1小时24分）</blockquote>
 <blockquote>嘉宾：Freda（Ultimate Capital合伙人，硅谷科技基金）</blockquote>
@@ -3087,17 +3113,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep141-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP141</span>
-        <span class="ep-date">2026-05-18</span>
-        <span class="dur">19:03</span>
-      </div>
-      <h3 class="ep-title">141. Freda的投资札记第2集：Tokenmaxxing、把电机塞进蒸汽机、接力赛变篮球赛、孤独、人的连接</h3>
-      <span class="source">📎 张小珺商业访谈录 #141（1小时24分）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep141-dual-20260728.mp3" data-index="10">
+      <div class="thumb" style="background:linear-gradient(290deg, hsl(160, 72%, 92%), hsl(200, 78%, 66%))">#141</div>
+      <div class="info">
+        <h3 class="ep-title">141. Freda的投资札记第2集：Tokenmaxxing、把电机塞进蒸汽机、接力赛变篮球赛、孤独、人的连接</h3>
+        <span class="source">📎 张小珺商业访谈录 #141（1小时24分）</span>
       <p class="desc">Token是AI时代的"千瓦时"，但现在大家还在比谁烧的电多，而不是比谁发的光好。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep141-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-18</span><span class="meta-dot">·</span><span class="dur">19:03</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep141-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Token经济学：AI时代的度量衡 — 学习解读</h2>
@@ -3399,24 +3427,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>Token是AI的千瓦时——但真正的竞争力不是烧了多少电，而是用这些电点亮了什么。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP14</span>
-        <span class="ep-date">2026-05-11</span>
-        <span class="dur">5:44</span>
-      </div>
-      <h3 class="ep-title">姚顺宇4小时访谈解读：预训练没到头、AI本质是简单的、集体主义胜利</h3>
-      <span class="source">📎 张小珺商业访谈录 #140（231min）嘉宾：姚顺宇（Anthropic/Google DeepMind）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3" data-index="11">
+      <div class="thumb" style="background:linear-gradient(319deg, hsl(280, 72%, 95%), hsl(320, 78%, 70%))">#14</div>
+      <div class="info">
+        <h3 class="ep-title">姚顺宇4小时访谈解读：预训练没到头、AI本质是简单的、集体主义胜利</h3>
+        <span class="source">📎 张小珺商业访谈录 #140（231min）嘉宾：姚顺宇（Anthropic/Google DeepMind）</span>
       <p class="desc">*生活类比：就像一个练了 9 年武术的人，突然发现格斗游戏的规则更有意思，于是从零开始打游戏——但他带着武术的底层功底（物理直觉），打起游戏来和纯游戏选手完全不一样。 *为什么重要：2024-2025 年行业主流叙事是&quot;预训练 scaling law 到顶了，下一步是后训练/RLHF&quot;。姚顺宇直接反</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-11</span><span class="meta-dot">·</span><span class="dur">5:44</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep04-yao-shunyu-interview-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>在前沿实验室训模型：技术预测与英雄主义的终结 — 学习解读</h2>
+<h2>在前沿实验室训模型：技术预测与英雄主义的终结 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #140（4小时）</blockquote>
 <blockquote>嘉宾：姚顺宇（曾在Anthropic和Google Gemini训模型的研究员）</blockquote>
@@ -3691,20 +3720,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep13-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP13</span>
-        <span class="ep-date">2026-05-01</span>
-        <span class="dur">2:03</span>
-      </div>
-      <h3 class="ep-title">苏煜Agent技术综述</h3>
-      <span class="source">📎 张小珺商业访谈录 #139（138min）嘉宾：苏煜（Ohio State大学教授）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep13-dual-20260725.mp3" data-index="12">
+      <div class="thumb" style="background:linear-gradient(348deg, hsl(40, 72%, 86%), hsl(80, 78%, 74%))">#13</div>
+      <div class="info">
+        <h3 class="ep-title">苏煜Agent技术综述</h3>
+        <span class="source">📎 张小珺商业访谈录 #139（138min）嘉宾：苏煜（Ohio State大学教授）</span>
       <p class="desc">1. Entity：有边界的实体（不是发散的工具） 2. Environment：在某种环境中工作 3. Goal-directed：有目的地行动</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep13-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-01</span><span class="meta-dot">·</span><span class="dur">2:03</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep13-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>Agent技术演进史 — 学习解读</h2>
+<h2>Agent技术演进史 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #139（2小时18分）</blockquote>
 <blockquote>嘉宾：苏煜（俄亥俄州立大学教授 / New Cognition创始人，2025斯隆研究奖得主）</blockquote>
@@ -4144,17 +4175,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep139-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP139</span>
-        <span class="ep-date">2026-05-01</span>
-        <span class="dur">23:54</span>
-      </div>
-      <h3 class="ep-title">139. 【Agent的综述】和苏煜聊Agent技术史、OpenClaw Moment、边界的消弭和社会的辐射</h3>
-      <span class="source">📎 张小珺商业访谈录 #139（2小时18分）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep139-dual-20260728.mp3" data-index="13">
+      <div class="thumb" style="background:linear-gradient(17deg, hsl(320, 72%, 89%), hsl(0, 78%, 78%))">#139</div>
+      <div class="info">
+        <h3 class="ep-title">139. 【Agent的综述】和苏煜聊Agent技术史、OpenClaw Moment、边界的消弭和社会的辐射</h3>
+        <span class="source">📎 张小珺商业访谈录 #139（2小时18分）</span>
       <p class="desc">Agent不是新东西，但语言让它第一次真正"活"了。这期不是在讲"怎么做一个Agent产品"，而是在讨论**Agent为什么会成为AI下一阶段，以及未来竞争壁垒在哪里**。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep139-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-05-01</span><span class="meta-dot">·</span><span class="dur">23:54</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep139-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Agent技术演进史 — 学习解读</h2>
@@ -4633,24 +4666,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
   <li>World Model 技术深度：World Model 在具身智能/机器人领域的技术细节（Dreamer、RSSM、VLA 等）</li>
   <li>ep139_139_Agent的综述和苏煜聊Agent技术史OpenClaw_Moment边界的消弭和社会的辐射：本期播客的完整转录</li>
 </ul>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP12</span>
-        <span class="ep-date">2026-04-24</span>
-        <span class="dur">14:11</span>
-      </div>
-      <h3 class="ep-title">大模型 Attention 机制深度调研：从 MLA 到混合稀疏（双人版）</h3>
-      <span class="source">📎 罗福莉 张小珺商业访谈录 #138（3.5h）+ DeepSeek V4/GLM 5.2/Kimi K3 技术报告</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3" data-index="14">
+      <div class="thumb" style="background:linear-gradient(46deg, hsl(90, 72%, 92%), hsl(130, 78%, 82%))">#12</div>
+      <div class="info">
+        <h3 class="ep-title">大模型 Attention 机制深度调研：从 MLA 到混合稀疏（双人版）</h3>
+        <span class="source">📎 罗福莉 张小珺商业访谈录 #138（3.5h）+ DeepSeek V4/GLM 5.2/Kimi K3 技术报告</span>
       <p class="desc">罗福莉（前DeepSeek核心研究员）3.5小时深度访谈：AI范式已然巨变，OpenClaw开源Agent框架如何改变游戏规则，Agent范式为何极度依赖后训练，算力卡的分配逻辑，以及AI组织如何实现平权。同时解读DeepSeek V4、GLM 5.2、Kimi K3技术报告中的Attention机</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-04-24</span><span class="meta-dot">·</span><span class="dur">14:11</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep01-attention-mechanism-dual-20260724.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>AI范式巨变：从预训练到后训练 — 学习解读</h2>
+<h2>AI范式巨变：从预训练到后训练 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #138（3.5小时）</blockquote>
 <blockquote>嘉宾：罗福莉（人工智能研究员）</blockquote>
@@ -4952,17 +4986,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep137-dual-20260731.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP137</span>
-        <span class="ep-date">2026-04-20</span>
-        <span class="dur">21:08</span>
-      </div>
-      <h3 class="ep-title">137. 对洪乐潼的4小时访谈：AI for Math、把数学变成Lean、数学天书中的证明、直觉、被创造与被发现的</h3>
-      <span class="source">📎 张小珺商业访谈录 ep137</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep137-dual-20260731.mp3" data-index="15">
+      <div class="thumb" style="background:linear-gradient(75deg, hsl(200, 72%, 95%), hsl(240, 78%, 66%))">#137</div>
+      <div class="info">
+        <h3 class="ep-title">137. 对洪乐潼的4小时访谈：AI for Math、把数学变成Lean、数学天书中的证明、直觉、被创造与被发现的</h3>
+        <span class="source">📎 张小珺商业访谈录 ep137</span>
       <p class="desc">一个自认"蛮力型、不是天赋型"的 00 后数学家，把"证明"从人类思维的本能，翻译成一种能让机器自我验证的语言 Lean，让你我理解：AI 数学不是变得更快，而是变得"绝对可信"。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep137-dual-20260731.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-04-20</span><span class="meta-dot">·</span><span class="dur">21:08</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep137-dual-20260731.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>AI for Math、把数学变成 Lean、证明中的直觉 — 学习解读（洪乐潼）</h2>
@@ -5252,24 +5288,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>所谓 AI 数学的革命，不是让机器变聪明去抢人类的灵感，而是把&quot;证明&quot;这句话本身，从&quot;我说我信&quot;升级成&quot;我跑给你看&quot;——它让数学从天才的稀缺手艺，变成了人人可复验的公共供给。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep16-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP11</span>
-        <span class="ep-date">2026-04-15</span>
-        <span class="dur">2:16</span>
-      </div>
-      <h3 class="ep-title">大模型季报9——Coding是AGI第二幕</h3>
-      <span class="source">📎 张小珺商业访谈录 #136（82min）嘉宾：广密</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep16-dual-20260725.mp3" data-index="16">
+      <div class="thumb" style="background:linear-gradient(104deg, hsl(18, 72%, 86%), hsl(58, 78%, 70%))">#11</div>
+      <div class="info">
+        <h3 class="ep-title">大模型季报9——Coding是AGI第二幕</h3>
+        <span class="source">📎 张小珺商业访谈录 #136（82min）嘉宾：广密</span>
       <p class="desc">Coding = 新的 AI 加速器 = 类比 GPU 没有领先 coding model = 没有领先 GPU = 掉队 语言及世界，代码及方案 = 最大泛化性</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep16-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-04-15</span><span class="meta-dot">·</span><span class="dur">2:16</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep16-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>大模型季报 9：Coding 是 AGI 第二幕、模型正成为新一代 OS — 学习解读</h2>
+<h2>大模型季报 9：Coding 是 AGI 第二幕、模型正成为新一代 OS — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #136（82min，全球大模型季报第 9 集）</blockquote>
 <blockquote>嘉宾：广密（硅谷科技投资人，研究型驱动）</blockquote>
@@ -5569,17 +5606,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep136-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP136</span>
-        <span class="ep-date">2026-04-15</span>
-        <span class="dur">22:37</span>
-      </div>
-      <h3 class="ep-title">136. 全球大模型季报第9集：和广密聊，Coding是AGI第二幕、硅谷御三家真相、模型正成为新一代OS</h3>
-      <span class="source">📎 张小珺商业访谈录 ep136</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep136-dual-20260728.mp3" data-index="17">
+      <div class="thumb" style="background:linear-gradient(133deg, hsl(210, 72%, 89%), hsl(250, 78%, 74%))">#136</div>
+      <div class="info">
+        <h3 class="ep-title">136. 全球大模型季报第9集：和广密聊，Coding是AGI第二幕、硅谷御三家真相、模型正成为新一代OS</h3>
+        <span class="source">📎 张小珺商业访谈录 ep136</span>
       <p class="desc">模型从"答问"进入"干活"的第二幕，靠的是代码这份自带验证器的世界语言；而它真正的野心，是成为承载一个GDP的操作系统——这既是最大的价值集中地，也是个体创造力得以空前释放的地基。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep136-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-04-15</span><span class="meta-dot">·</span><span class="dur">22:37</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep136-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Coding是AGI第二幕 — 学习解读</h2>
@@ -6123,21 +6162,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>模型从&quot;答问&quot;进入&quot;干活&quot;的第二幕，靠的是代码这份自带验证器的世界语言；而它真正的野心，是成为承载一个GDP的操作系统——这既是最大的价值集中地，也是个体创造力得以空前释放的地基。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep135-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP135</span>
-        <span class="ep-date">2026-04-10</span>
-        <span class="dur">20:01</span>
-      </div>
-      <h3 class="ep-title">135. 和自然选择创始人Tristan聊，Elys、赛博分身、灵魂、Context的获取与流动和AI社交网络</h3>
-      <span class="source">📎 张小珺商业访谈录 ep135</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep135-dual-20260729.mp3" data-index="18">
+      <div class="thumb" style="background:linear-gradient(162deg, hsl(160, 72%, 92%), hsl(200, 78%, 78%))">#135</div>
+      <div class="info">
+        <h3 class="ep-title">135. 和自然选择创始人Tristan聊，Elys、赛博分身、灵魂、Context的获取与流动和AI社交网络</h3>
+        <span class="source">📎 张小珺商业访谈录 ep135</span>
       <p class="desc">当 AI 把一切"做功"都包揽之后，我们唯一能做的、也是最难做的那件事，就是诚实地、持续地回答问题——你到底是谁。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep135-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-04-10</span><span class="meta-dot">·</span><span class="dur">20:01</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep135-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>ElysAI社交—为什么&quot;做自己&quot;会成为AI时代唯一重要的事 — 学习解读</h2>
@@ -6436,21 +6476,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
   <li>Obsidian与主体性沉淀</li>
   <li>模型级产品vs网络级产品</li>
 </ul>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep134-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP134</span>
-        <span class="ep-date">2026-03-30</span>
-        <span class="dur">14:54</span>
-      </div>
-      <h3 class="ep-title">134. 【数据的综述】和谢晨聊，新时代的石油、历史、版图、数据金字塔、定价与Recipe</h3>
-      <span class="source">📎 张小珺商业访谈录 ep134</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep134-dual-20260729.mp3" data-index="19">
+      <div class="thumb" style="background:linear-gradient(191deg, hsl(280, 72%, 95%), hsl(320, 78%, 82%))">#134</div>
+      <div class="info">
+        <h3 class="ep-title">134. 【数据的综述】和谢晨聊，新时代的石油、历史、版图、数据金字塔、定价与Recipe</h3>
+        <span class="source">📎 张小珺商业访谈录 ep134</span>
       <p class="desc">数据是新时代的石油没错，但石油能卖钱靠的是炼油工艺。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep134-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-03-30</span><span class="meta-dot">·</span><span class="dur">14:54</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep134-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <p>#数据综述新时代石油—学习解读</p>
@@ -6968,24 +7009,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>数据是新时代的石油没错，但石油能卖钱靠的是炼油工艺。</p>
 <br/>
 <p>而数据能喂出智能，靠的是把&quot;评价和反馈&quot;做进每一次从失败到成功的迭代里。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep15-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP10</span>
-        <span class="ep-date">2026-03-16</span>
-        <span class="dur">1:55</span>
-      </div>
-      <h3 class="ep-title">谢赛宁7小时访谈——研究方法论</h3>
-      <span class="source">📎 张小珺商业访谈录 #133（405min）嘉宾：谢赛宁（NYU教授）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep15-dual-20260725.mp3" data-index="20">
+      <div class="thumb" style="background:linear-gradient(220deg, hsl(40, 72%, 86%), hsl(80, 78%, 66%))">#10</div>
+      <div class="info">
+        <h3 class="ep-title">谢赛宁7小时访谈——研究方法论</h3>
+        <span class="source">📎 张小珺商业访谈录 #133（405min）嘉宾：谢赛宁（NYU教授）</span>
       <p class="desc">凯明在 FAIR 花大量时间搭建&quot;脚手架&quot;（baseline + 工程 + 数据管道） 脚手架 = research 的平台 脚手架不稳 = 你的发现可能是假信号</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep15-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-03-16</span><span class="meta-dot">·</span><span class="dur">1:55</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep15-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>谢赛宁 7 小时马拉松访谈：世界模型、逃出硅谷、AMI Labs、两次拒绝 Ilya — 学习解读</h2>
+<h2>谢赛宁 7 小时马拉松访谈：世界模型、逃出硅谷、AMI Labs、两次拒绝 Ilya — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #133（405min，上集，纽约春节大雪中对谈）</blockquote>
 <blockquote>嘉宾：谢赛宁（NYU 助理教授，DiT 作者，与杨立昆共同创立 AMI Labs）</blockquote>
@@ -7284,17 +7326,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep133-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP133</span>
-        <span class="ep-date">2026-03-16</span>
-        <span class="dur">3:26</span>
-      </div>
-      <h3 class="ep-title">133. 对谢赛宁的7小时马拉松访谈：世界模型、逃出硅谷、AMI Labs、两次拒绝Ilya、杨立昆、李飞飞和42</h3>
-      <span class="source">📎 张小珺商业访谈录 #133（405min</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep133-dual-20260728.mp3" data-index="21">
+      <div class="thumb" style="background:linear-gradient(249deg, hsl(320, 72%, 89%), hsl(0, 78%, 70%))">#133</div>
+      <div class="info">
+        <h3 class="ep-title">133. 对谢赛宁的7小时马拉松访谈：世界模型、逃出硅谷、AMI Labs、两次拒绝Ilya、杨立昆、李飞飞和42</h3>
+        <span class="source">📎 张小珺商业访谈录 #133（405min</span>
       <p class="desc">**一个自称"B class trajectory"的视觉研究者，用 12 年讲明白了一件事——研究不是从 A 点到 B 点的直线，而是一场"随机梯度下降"，你在探索中找到的那个 idea，才真正属于你。**</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep133-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-03-16</span><span class="meta-dot">·</span><span class="dur">3:26</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep133-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>谢赛宁 7 小时马拉松访谈：世界模型、逃出硅谷、AMI Labs、两次拒绝 Ilya — 学习解读</h2>
@@ -7626,21 +7670,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>| 逃出硅谷 | 知道大厂做什么，所以我不做什么 | 用花生米资源追赶大厂 | 不跟风，找差异化 |</p>
 <br/>
 <p>| 无限游戏 | 这辈子只需成功一次 | 每次都要赢 | 赌一次代表作，不追求每季度都赢 |</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep132-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP132</span>
-        <span class="ep-date">2026-02-13</span>
-        <span class="dur">14:20</span>
-      </div>
-      <h3 class="ep-title">132. 对星海图创始人高继扬的3小时访谈：鲶鱼、曾国藩、Waymo与Momenta的两面、一只狼与许华哲的离开</h3>
-      <span class="source">📎 张小珺商业访谈录 ep132</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep132-dual-20260729.mp3" data-index="22">
+      <div class="thumb" style="background:linear-gradient(278deg, hsl(90, 72%, 92%), hsl(130, 78%, 74%))">#132</div>
+      <div class="info">
+        <h3 class="ep-title">132. 对星海图创始人高继扬的3小时访谈：鲶鱼、曾国藩、Waymo与Momenta的两面、一只狼与许华哲的离开</h3>
+        <span class="source">📎 张小珺商业访谈录 ep132</span>
       <p class="desc">具身智能的浪漫，恰恰在于它拒绝浪漫——只有像曾国藩那样从清流转为事功、把头埋进土里、把理想压成每天的 ROI，才能把 AI 的魔力变成物理世界的真实价值。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep132-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-02-13</span><span class="meta-dot">·</span><span class="dur">14:20</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep132-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>星海图高继扬——具身创业——学习解读</h2>
@@ -8048,24 +8093,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>具身智能的浪漫，恰恰在于它拒绝浪漫——只有像曾国藩那样从清流转为事功、把头埋进土里、把理想压成每天的 ROI，才能把 AI 的魔力变成物理世界的真实价值。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep14-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP09</span>
-        <span class="ep-date">2026-01-26</span>
-        <span class="dur">1:53</span>
-      </div>
-      <h3 class="ep-title">印奇阶跃星辰——从AI1.0到2.0</h3>
-      <span class="source">📎 张小珺商业访谈录 #131（118min）嘉宾：印奇（阶跃星辰董事长）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep14-dual-20260725.mp3" data-index="23">
+      <div class="thumb" style="background:linear-gradient(307deg, hsl(200, 72%, 95%), hsl(240, 78%, 78%))">#09</div>
+      <div class="info">
+        <h3 class="ep-title">印奇阶跃星辰——从AI1.0到2.0</h3>
+        <span class="source">📎 张小珺商业访谈录 #131（118min）嘉宾：印奇（阶跃星辰董事长）</span>
       <p class="desc">AI 的突破 = 某个参数超过阈值后的突然涌现 AI 投资 = 寻找&quot;阶跃函数&quot;式突变的公司 你的持仓中，英伟达 = 阶跃函数受益者（算力需求突变）</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep14-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-01-26</span><span class="meta-dot">·</span><span class="dur">1:53</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep14-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>印奇出任阶跃星辰董事长：聪明人的诱惑、取舍与阶跃函数 — 学习解读</h2>
+<h2>印奇出任阶跃星辰董事长：聪明人的诱惑、取舍与阶跃函数 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #131（118min）</blockquote>
 <blockquote>嘉宾：印奇（旷视科技联合创始人，千里科技 &amp; 阶跃星辰双料董事长）</blockquote>
@@ -8355,17 +8401,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep131-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP131</span>
-        <span class="ep-date">2026-01-26</span>
-        <span class="dur">12:00</span>
-      </div>
-      <h3 class="ep-title">131. 印奇出任阶跃星辰董事长的访谈：聪明人的诱惑、取舍、超长链路残酷淘汰赛、阶跃函数和超多元方程</h3>
-      <span class="source">📎 张小珺商业访谈录 #131（118min）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep131-dual-20260728.mp3" data-index="24">
+      <div class="thumb" style="background:linear-gradient(336deg, hsl(18, 72%, 86%), hsl(58, 78%, 82%))">#131</div>
+      <div class="info">
+        <h3 class="ep-title">131. 印奇出任阶跃星辰董事长的访谈：聪明人的诱惑、取舍、超长链路残酷淘汰赛、阶跃函数和超多元方程</h3>
+        <span class="source">📎 张小珺商业访谈录 #131（118min）</span>
       <p class="desc">**一个用 15 年踩遍 AI 1.0 所有坑的创业者，用"做排除法"的逻辑想清楚了一件事：基模公司不能做 to B，也不能做纯 to C 软件，只能做"AI + 终端"——因为大脑必须长出身体，才能触及物理世界。**</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep131-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-01-26</span><span class="meta-dot">·</span><span class="dur">12:00</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep131-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>印奇出任阶跃星辰董事长：聪明人的诱惑、取舍与阶跃函数 — 学习解读</h2>
@@ -8694,21 +8742,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>| 交集 | 三者同时满足？ | ❌ | ✅（印奇判断） |</p>
 <br/>
 <p><b>关键提醒</b>：三者的交集&quot;不是一直出现的&quot;——印奇说&quot;得等待这个交集&quot;。如果你在&quot;交集还没出现&quot;时就 all-in，你会像旷视打安防那样&quot;把把都上，每把都没赢&quot;。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep130-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP130</span>
-        <span class="ep-date">2026-01-22</span>
-        <span class="dur">23:50</span>
-      </div>
-      <h3 class="ep-title">130. 张月光创业两年首次访谈：妙鸭不是AI Native产品、流程到上下文设计、One Way Door和乙女游戏</h3>
-      <span class="source">📎 张小珺商业访谈录 ep130</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep130-dual-20260729.mp3" data-index="25">
+      <div class="thumb" style="background:linear-gradient(5deg, hsl(210, 72%, 89%), hsl(250, 78%, 66%))">#130</div>
+      <div class="info">
+        <h3 class="ep-title">130. 张月光创业两年首次访谈：妙鸭不是AI Native产品、流程到上下文设计、One Way Door和乙女游戏</h3>
+        <span class="source">📎 张小珺商业访谈录 ep130</span>
       <p class="desc">妙鸭不是AI Native产品，它是把AI能力发挥到极致的互联网产品。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep130-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-01-22</span><span class="meta-dot">·</span><span class="dur">23:50</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep130-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>妙鸭AI产品—学习解读</h2>
@@ -9137,21 +9186,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>看一个AI产品是不是真·Native，别盯技术炫不炫，要看它是在&quot;锁死用户输入去讨好流程&quot;，还是在&quot;为开放输入设计最佳上下文&quot;——前者是妙鸭式的互联网赢家，后者才是AI时代的主航道。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep129-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP129</span>
-        <span class="ep-date">2026-01-08</span>
-        <span class="dur">16:23</span>
-      </div>
-      <h3 class="ep-title">129. 全球大模型第一股的上市访谈，和智谱CEO张鹏聊：敢问路在何方？</h3>
-      <span class="source">📎 张小珺商业访谈录 ep129（126min）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep129-dual-20260729.mp3" data-index="26">
+      <div class="thumb" style="background:linear-gradient(34deg, hsl(160, 72%, 92%), hsl(200, 78%, 70%))">#129</div>
+      <div class="info">
+        <h3 class="ep-title">129. 全球大模型第一股的上市访谈，和智谱CEO张鹏聊：敢问路在何方？</h3>
+        <span class="source">📎 张小珺商业访谈录 ep129（126min）</span>
       <p class="desc">**智谱成为中国、也是全球第一家大模型上市公司，CEO 张鹏复盘了从清华实验室到港交所的 6 年半：这条路不是"追风口"，而是把"认知智能"这个关键技术从研究做到产业的过程，而上市只是长跑中途的一站补给。**</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep129-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2026-01-08</span><span class="meta-dot">·</span><span class="dur">16:23</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep129-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>智谱上市张鹏：全球大模型第一股 — 学习解读</h2>
@@ -9674,24 +9724,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>*关联文档：印奇阶跃星辰_学习解读、人工智能盛筵泡泡_朱啸虎_学习解读、梁文锋投资人会议_学习解读、大模型季报8_AIWar与第三范式_学习解读*</p>
 <br/>
 <p>*记录日期：2026-07-31*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP08</span>
-        <span class="ep-date">2025-12-30</span>
-        <span class="dur">3:02</span>
-      </div>
-      <h3 class="ep-title">Manus出售前最后访谈——纪超的奇幻漂流</h3>
-      <span class="source">📎 张小珺商业访谈录 #128（211min）嘉宾：纪超/Peak（Manus联合创始人）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3" data-index="27">
+      <div class="thumb" style="background:linear-gradient(63deg, hsl(280, 72%, 95%), hsl(320, 78%, 74%))">#08</div>
+      <div class="info">
+        <h3 class="ep-title">Manus出售前最后访谈——纪超的奇幻漂流</h3>
+        <span class="source">📎 张小珺商业访谈录 #128（211min）嘉宾：纪超/Peak（Manus联合创始人）</span>
       <p class="desc">纪超的第二次创业（Maggie）押注&quot;垂直整合&quot;：自己训练模型 + 自己做产品 结果：GPT3 一个 prompt 就和他端到端训练的模型五五开 教训：不要在别人的赛道上和别人竞争</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-30</span><span class="meta-dot">·</span><span class="dur">3:02</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep08-manus-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>Manus 出售前最后访谈：纯血 Agent、壳的厚度与心手合一 — 学习解读</h2>
+<h2>Manus 出售前最后访谈：纯血 Agent、壳的厚度与心手合一 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #128（211min）</blockquote>
 <blockquote>嘉宾：季逸超（Pick，Manus 联合创始人 &amp; 首席科学家）</blockquote>
@@ -9979,17 +10030,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep128.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP128</span>
-        <span class="ep-date">2025-12-30</span>
-        <span class="dur">21:45</span>
-      </div>
-      <h3 class="ep-title">128. Manus决定出售前最后的访谈：啊，这奇幻的2025年漂流啊…</h3>
-      <span class="source">📎 张小珺商业访谈录 #128（211min）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep128.mp3" data-index="28">
+      <div class="thumb" style="background:linear-gradient(92deg, hsl(40, 72%, 86%), hsl(80, 78%, 78%))">#128</div>
+      <div class="info">
+        <h3 class="ep-title">128. Manus决定出售前最后的访谈：啊，这奇幻的2025年漂流啊…</h3>
+        <span class="source">📎 张小珺商业访谈录 #128（211min）</span>
       <p class="desc">**一个做了两遍浏览器、被 GPT-3 杀死过一次的技术创业者，讲清楚了"为什么 Manus 是一个壳而不是一个模型"——以及为什么这个壳的厚度，才是真正的护城河。**</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep128.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-30</span><span class="meta-dot">·</span><span class="dur">21:45</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep128.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Manus 出售前最后访谈：纯血 Agent、壳的厚度与心手合一 — 学习解读</h2>
@@ -10306,24 +10359,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p><b>它的数据飞轮在转吗？</b> 用户是在&quot;改 prompt&quot;（chatbot 模式），还是在&quot;教 agent&quot;（agent 模式）？前者没有飞轮，后者有。</p>
 <br/>
 <p><b>它的算力经济学算得过来吗？</b> agent 的 input:output 是 100:1 到 1000:1，每多一个用户就多一份成本。如果它还在&quot;免费获客&quot;，它要么在烧钱，要么在骗自己。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep12-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP07</span>
-        <span class="ep-date">2025-12-24</span>
-        <span class="dur">2:46</span>
-      </div>
-      <h3 class="ep-title">大模型季报8——AI War与第三范式</h3>
-      <span class="source">📎 张小珺商业访谈录 #127（78min）嘉宾：广密</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep12-dual-20260725.mp3" data-index="29">
+      <div class="thumb" style="background:linear-gradient(121deg, hsl(320, 72%, 89%), hsl(0, 78%, 82%))">#07</div>
+      <div class="info">
+        <h3 class="ep-title">大模型季报8——AI War与第三范式</h3>
+        <span class="source">📎 张小珺商业访谈录 #127（78min）嘉宾：广密</span>
       <p class="desc">AI 不是 bubble（泡沫），是 war（战争） 每个科技巨头都输不起 = 砸光最后一分钱也不下牌桌 中美国家战略 = 都输不起的军备竞赛</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep12-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-24</span><span class="meta-dot">·</span><span class="dur">2:46</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep12-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>大模型季报 8：AI War、两大联盟与第三范式 Online Learning — 学习解读</h2>
+<h2>大模型季报 8：AI War、两大联盟与第三范式 Online Learning — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #127（78min，全球大模型季报第 8 集，跨年对谈第三年）</blockquote>
 <blockquote>嘉宾：广密（硅谷科技投资人，研究型驱动，一二级横跨）</blockquote>
@@ -10614,17 +10668,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep127.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP127</span>
-        <span class="ep-date">2025-12-24</span>
-        <span class="dur">19:11</span>
-      </div>
-      <h3 class="ep-title">127. 大模型季报跨年对谈：和广密预言一场AI War、两大联盟和第三个范式Online Learning</h3>
-      <span class="source">📎 张小珺商业访谈录 ep127</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep127.mp3" data-index="30">
+      <div class="thumb" style="background:linear-gradient(150deg, hsl(90, 72%, 92%), hsl(130, 78%, 66%))">#127</div>
+      <div class="info">
+        <h3 class="ep-title">127. 大模型季报跨年对谈：和广密预言一场AI War、两大联盟和第三个范式Online Learning</h3>
+        <span class="source">📎 张小珺商业访谈录 ep127</span>
       <p class="desc">这不是泡沫，而是一场谁都输不起的AI战争，胜负手藏在第三个范式——在线学习里。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep127.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-24</span><span class="meta-dot">·</span><span class="dur">19:11</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep127.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <p>#大模型季报跨年_AWar第三范式_学习解读</p>
@@ -10878,21 +10934,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>一句话总结</p>
 <br/>
 <p>AI不是泡沫，是一场谁都输不起的战争——短期烧钱是因为在抢入口，而真正的胜负手，是看谁先点着第三个范式「在线学习」这把火。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep126-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP126</span>
-        <span class="ep-date">2025-12-21</span>
-        <span class="dur">17:37</span>
-      </div>
-      <h3 class="ep-title">126. 和红杉郑庆生聊：经济史的流量革命、人类行为模式的不可预期，与创始人性格</h3>
-      <span class="source">📎 张小珺商业访谈录 ep126</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep126-dual-20260729.mp3" data-index="31">
+      <div class="thumb" style="background:linear-gradient(179deg, hsl(200, 72%, 95%), hsl(240, 78%, 70%))">#126</div>
+      <div class="info">
+        <h3 class="ep-title">126. 和红杉郑庆生聊：经济史的流量革命、人类行为模式的不可预期，与创始人性格</h3>
+        <span class="source">📎 张小珺商业访谈录 ep126</span>
       <p class="desc">经济史是流量一次次换管道的历史，而每一根新管道能装下什么，从来不由管道决定，只由"不可预期的人类"在写下后共同决定——投资人能做的是像产品评论员一样，凭直觉嗅出可能的名著，然后谦卑地等待它被用户写满意义。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep126-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-21</span><span class="meta-dot">·</span><span class="dur">17:37</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep126-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>流量革命经济史 — 学习解读</h2>
@@ -11182,21 +11239,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>经济史是流量一次次换管道的历史，而每一根新管道能装下什么，从来不由管道决定，只由&quot;不可预期的人类&quot;在写下后共同决定——投资人能做的是像产品评论员一样，凭直觉嗅出可能的名著，然后谦卑地等待它被用户写满意义。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep125.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP125</span>
-        <span class="ep-date">2025-12-16</span>
-        <span class="dur">19:40</span>
-      </div>
-      <h3 class="ep-title">125. Freda的投资札记第1集：下注OpenAI、Robinhood往事，美国资本坏小孩、算盘与泡沫</h3>
-      <span class="source">📎 张小珺商业访谈录 #125（84min）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep125.mp3" data-index="32">
+      <div class="thumb" style="background:linear-gradient(208deg, hsl(18, 72%, 86%), hsl(58, 78%, 74%))">#125</div>
+      <div class="info">
+        <h3 class="ep-title">125. Freda的投资札记第1集：下注OpenAI、Robinhood往事，美国资本坏小孩、算盘与泡沫</h3>
+        <span class="source">📎 张小珺商业访谈录 #125（84min）</span>
       <p class="desc">**一个硅谷一线投资人，用"算账"的方式拆解 AI 明星公司——OpenAI 的负向滚雪球、Robinhood 的烂牌打法、以及"把鸡蛋放进一个篮子"的反直觉投资哲学。**</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep125.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-16</span><span class="meta-dot">·</span><span class="dur">19:40</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep125.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Freda 投资札记 1：下注 OpenAI、Robinhood 与美国资本新秩序 — 学习解读</h2>
@@ -11528,24 +11586,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>| 微软 | Azure 增量 70% 来自 OpenAI | 云竞争格局恶化（三朵→十朵） | ✅ 直接持仓 |</p>
 <br/>
 <p>| 腾讯/阿里 | 电子收入存量博弈（4000亿） | agent 是否重构广告/电商 | ✅ 直接持仓 |</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP06</span>
-        <span class="ep-date">2025-12-14</span>
-        <span class="dur">2:34</span>
-      </div>
-      <h3 class="ep-title">雨森创投观察1——Year of R</h3>
-      <span class="source">📎 张小珺商业访谈录 #124（203min）嘉宾：戴雨森（真格基金）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3" data-index="33">
+      <div class="thumb" style="background:linear-gradient(237deg, hsl(210, 72%, 89%), hsl(250, 78%, 78%))">#06</div>
+      <div class="info">
+        <h3 class="ep-title">雨森创投观察1——Year of R</h3>
+        <span class="source">📎 张小珺商业访谈录 #124（203min）嘉宾：戴雨森（真格基金）</span>
       <p class="desc">1. Return（回报）：AI 投资从&quot;烧钱&quot;转向&quot;赚钱&quot; 2. Research（研究）：新的研究突破才能带来下一波增长 3. Reality（现实）：从泡沫预期回到现实</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-14</span><span class="meta-dot">·</span><span class="dur">2:34</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep11-1-year-of-r-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>雨森创投观察 1：The Year of R — 学习解读</h2>
+<h2>雨森创投观察 1：The Year of R — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #124（203min）</blockquote>
 <blockquote>嘉宾：戴雨森（真格基金管理合伙人，聚美优品联合创始人）</blockquote>
@@ -11834,17 +11893,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep124.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP124</span>
-        <span class="ep-date">2025-12-14</span>
-        <span class="dur">13:20</span>
-      </div>
-      <h3 class="ep-title">124. 雨森的创投观察第1集：2026年预期、The Year of R、回调、我们如何下注</h3>
-      <span class="source">📎 张小珺商业访谈录 #124（203min）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep124.mp3" data-index="34">
+      <div class="thumb" style="background:linear-gradient(266deg, hsl(160, 72%, 92%), hsl(200, 78%, 82%))">#124</div>
+      <div class="info">
+        <h3 class="ep-title">124. 雨森的创投观察第1集：2026年预期、The Year of R、回调、我们如何下注</h3>
+        <span class="source">📎 张小珺商业访谈录 #124（203min）</span>
       <p class="desc">**2026 年，AI 从"讲故事"进入"算账"——投入越大，越要追问回报，而回报的天花板正由"模型没有秘密"这个残酷事实决定。**</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep124.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-14</span><span class="meta-dot">·</span><span class="dur">13:20</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep124.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>雨森创投观察 1：The Year of R — 学习解读</h2>
@@ -12168,21 +12229,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>*关联文档：雨森创投观察2_学习解读、大模型季报8_AIWar与第三范式_学习解读、谢赛宁7小时访谈_学习解读、Freda投资札记_学习解读*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep123-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP123</span>
-        <span class="ep-date">2025-12-12</span>
-        <span class="dur">12:22</span>
-      </div>
-      <h3 class="ep-title">123. 对ONE2X创始人王冠3小时访谈：生成系统、没有中间商赚差价、内容平台的权力分配</h3>
-      <span class="source">📎 张小珺商业访谈录 ep123</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep123-dual-20260729.mp3" data-index="35">
+      <div class="thumb" style="background:linear-gradient(295deg, hsl(280, 72%, 95%), hsl(320, 78%, 66%))">#123</div>
+      <div class="info">
+        <h3 class="ep-title">123. 对ONE2X创始人王冠3小时访谈：生成系统、没有中间商赚差价、内容平台的权力分配</h3>
+        <span class="source">📎 张小珺商业访谈录 ep123</span>
       <p class="desc">AI 时代的公司最终都会变成"生成系统"公司——它不再是告诉你"去哪个货架上有什么"的分发平台，而是直接在你需要的那一刻，为你量身现做那份内容，顺带把中间商抽走。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep123-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-12</span><span class="meta-dot">·</span><span class="dur">12:22</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep123-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>生成系统 — 学习解读</h2>
@@ -12544,21 +12606,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>生成系统不是在&quot;更聪明地给你挑货&quot;，而是在根本上把&quot;挑货的中间商&quot;换成&quot;为你现做的厨房&quot;——这波真正的赢家不是分发的人，而是能握着&quot;别人没有的内生数据&quot;、把少数强人的智慧复制成十万份的生产系统。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep122-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP122</span>
-        <span class="ep-date">2025-12-09</span>
-        <span class="dur">10:44</span>
-      </div>
-      <h3 class="ep-title">122. 朱啸虎现实主义故事的第三次连载：人工智能的盛筵与泡泡</h3>
-      <span class="source">📎 张小珺商业访谈录 ep122</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep122-dual-20260729.mp3" data-index="36">
+      <div class="thumb" style="background:linear-gradient(324deg, hsl(40, 72%, 86%), hsl(80, 78%, 70%))">#122</div>
+      <div class="info">
+        <h3 class="ep-title">122. 朱啸虎现实主义故事的第三次连载：人工智能的盛筵与泡泡</h3>
+        <span class="source">📎 张小珺商业访谈录 ep122</span>
       <p class="desc">大家都在喊AI泡沫的时候，泡沫一定还没到——真正的泡沫，是所有人闭口不谈泡沫、一千万人往里冲的那一刻。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep122-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-12-09</span><span class="meta-dot">·</span><span class="dur">10:44</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep122-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>AI的盛筵与泡泡—学习解读</h2>
@@ -13003,24 +13066,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <ul>
   <li>盛世与泡沫的分水岭，从来不是价格高低，而是有没有上百亿的token在持续真实地流淌——有人真在用，繁荣就还没有醉。</li>
 </ul>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP05</span>
-        <span class="ep-date">2025-11-28</span>
-        <span class="dur">2:52</span>
-      </div>
-      <h3 class="ep-title">DeepMind谭捷——机器人世界模型与Sim-to-Real</h3>
-      <span class="source">📎 张小珺商业访谈录 #121（126min）嘉宾：谭捷（Google DeepMind）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3" data-index="37">
+      <div class="thumb" style="background:linear-gradient(353deg, hsl(320, 72%, 89%), hsl(0, 78%, 74%))">#05</div>
+      <div class="info">
+        <h3 class="ep-title">DeepMind谭捷——机器人世界模型与Sim-to-Real</h3>
+        <span class="source">📎 张小珺商业访谈录 #121（126min）嘉宾：谭捷（Google DeepMind）</span>
       <p class="desc">投资 = 大脑（深度思考）+ 小脑（快速执行） 以前：机器人控制 = MPC（模型预测控制），需要精确数学模型 现在：深度强化学习 + Sim-to-Real = 在仿真中训练，迁移到真实世界</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-11-28</span><span class="meta-dot">·</span><span class="dur">2:52</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep10-deepmind-sim-to-real-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>谭捷：机器人大脑、跨本体迁移与数据信仰 — 学习解读</h2>
+<h2>谭捷：机器人大脑、跨本体迁移与数据信仰 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #121（02:06:15）</blockquote>
 <blockquote>嘉宾：谭捷（Google DeepMind 机器人团队高级研究科学家、技术负责人）</blockquote>
@@ -13313,17 +13377,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep121.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP121</span>
-        <span class="ep-date">2025-11-28</span>
-        <span class="dur">12:44</span>
-      </div>
-      <h3 class="ep-title">121. 对DeepMind谭捷的访谈：机器人、跨本体、世界模型、Gemini Robotics 1.5和Google</h3>
-      <span class="source">📎 张小珺商业访谈录 #121（02:06:15）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep121.mp3" data-index="38">
+      <div class="thumb" style="background:linear-gradient(22deg, hsl(90, 72%, 92%), hsl(130, 78%, 78%))">#121</div>
+      <div class="info">
+        <h3 class="ep-title">121. 对DeepMind谭捷的访谈：机器人、跨本体、世界模型、Gemini Robotics 1.5和Google</h3>
+        <span class="source">📎 张小珺商业访谈录 #121（02:06:15）</span>
       <p class="desc">机器人的"小脑"（走路）已经被强化学习解决了，但"大脑"（做事）还卡在数据上——谁能用 scalable 的方式获取高质量数据，谁就赢了。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep121.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-11-28</span><span class="meta-dot">·</span><span class="dur">12:44</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep121.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>谭捷：机器人大脑、跨本体迁移与数据信仰 — 学习解读</h2>
@@ -13619,21 +13685,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>*关联文档：机器人基座模型与VLA_学习解读_2026-07-25、姚顺雨OpenAI_Agent研究_学习解读_2026-07-25、OpenAI吴翼解读o1_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep120-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP120</span>
-        <span class="ep-date">2025-11-18</span>
-        <span class="dur">13:33</span>
-      </div>
-      <h3 class="ep-title">120. 小鹏新上任的刘先明首次访谈：Language是毒药、拆掉L、简单即美、换帅、小鹏的AI转型</h3>
-      <span class="source">📎 张小珺商业访谈录 ep120</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep120-dual-20260729.mp3" data-index="39">
+      <div class="thumb" style="background:linear-gradient(51deg, hsl(200, 72%, 95%), hsl(240, 78%, 82%))">#120</div>
+      <div class="info">
+        <h3 class="ep-title">120. 小鹏新上任的刘先明首次访谈：Language是毒药、拆掉L、简单即美、换帅、小鹏的AI转型</h3>
+        <span class="source">📎 张小珺商业访谈录 ep120</span>
       <p class="desc">一个从 Facebook 研究院到 Cruise（Robotaxi）再到小鹏的"AI铁杆工程师"，上任三周、第一次专访就把小鹏最激进的技术决策讲透了。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep120-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-11-18</span><span class="meta-dot">·</span><span class="dur">13:33</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep120-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>小鹏AI转型 — 学习解读</h2>
@@ -13936,21 +14003,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>小鹏这轮转型的技术内幕，用刘先明的话浓缩就是：物理世界的 AI 该拆就拆——把语言这层多余的中转拆掉，把规则这层穷举的幻觉拆掉，用海量数据和极致简化去喂一个真正理解世界的模型，而这一切的前提，是你要一头扎进只有主机厂才有的数据金矿里做一个敢承担风险的&quot;拆家&quot;。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep119-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP119</span>
-        <span class="ep-date">2025-11-03</span>
-        <span class="dur">15:18</span>
-      </div>
-      <h3 class="ep-title">119. Kimi Linear、Minimax M2？和杨松琳考古算法变种史，并预演未来架构改进方案</h3>
-      <span class="source">📎 节目：张小珺商业访谈录 ep119</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep119-dual-20260729.mp3" data-index="40">
+      <div class="thumb" style="background:linear-gradient(80deg, hsl(18, 72%, 86%), hsl(58, 78%, 66%))">#119</div>
+      <div class="info">
+        <h3 class="ep-title">119. Kimi Linear、Minimax M2？和杨松琳考古算法变种史，并预演未来架构改进方案</h3>
+        <span class="source">📎 节目：张小珺商业访谈录 ep119</span>
       <p class="desc">注意力机制是 Transformer 里最后一块「还没被雕完」的木头：FFN 已经被 MOE 雕成了共识，而 attention 这一侧，全世界正在为「怎么在长上下文下省算力」压出三条不同的注——DeepSeek 押稀疏、Kimi 押混合线性、MiniMax 押了又退，而杨松琳用「考古」告诉我们：今天最时髦的想法，很多在五年前的文献海里早就有种子了。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep119-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-11-03</span><span class="meta-dot">·</span><span class="dur">15:18</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep119-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>算法变种史：线性注意力与未来架构—学习解读</h2>
@@ -14219,21 +14287,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>Attention 是 Transformer 里最后一块没被雕完的木头，而全世界正在三条路上押注怎么在这块木头里省算力、又不丢掉长程推理的精准——但最深的提醒是：今天的酷想法，常常只是把五年前被埋没、缺了硬件配套的种子，用当下的算力重新点燃；想在这个领域做研究，与其追热点，不如先去&quot;考古&quot;，把那些数学上 make sense 却蒙尘的工作，配上一把能真跑的算法钥匙。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep118-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP118</span>
-        <span class="ep-date">2025-10-30</span>
-        <span class="dur">20:51</span>
-      </div>
-      <h3 class="ep-title">118. 对李想的第二次3小时访谈：CEO大模型、MoE、梁文锋、VLA、能量、记忆、对抗人性、亲密关系、人类的智慧</h3>
-      <span class="source">📎 张小珺商业访谈录 ep118</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep118-dual-20260729.mp3" data-index="41">
+      <div class="thumb" style="background:linear-gradient(109deg, hsl(210, 72%, 89%), hsl(250, 78%, 70%))">#118</div>
+      <div class="info">
+        <h3 class="ep-title">118. 对李想的第二次3小时访谈：CEO大模型、MoE、梁文锋、VLA、能量、记忆、对抗人性、亲密关系、人类的智慧</h3>
+        <span class="source">📎 张小珺商业访谈录 ep118</span>
       <p class="desc">这位造车的人，其实是把"人怎么想、怎么做、怎么共事"当成第一性原理，再反推到大模型（语言模型、VLA 自动驾驶、AgentOS、组织与能量）上——他先理解人，再理解 AI。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep118-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-10-30</span><span class="meta-dot">·</span><span class="dur">20:51</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep118-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>李想：司机大模型、AgentOS 与&quot;最强大脑&quot; — 学习解读</h2>
@@ -14545,21 +14614,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>李想让我重新理解一件事：真正的大模型不是装在硅片里的，而是&quot;人怎么分工、怎么发挥、怎么彼此成为对方的心力&quot;，AI 只是把这条人类早就该有的最佳实践，第一次逼着你认真执行了一遍。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep117-dual-20260731.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP117</span>
-        <span class="ep-date">2025-10-28</span>
-        <span class="dur">17:11</span>
-      </div>
-      <h3 class="ep-title">117. 开源一段论文探索之旅：模型范式、Infra和数据、语言、多模态的完整变迁史</h3>
-      <span class="source">📎 张小珺商业访谈录 ep117</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep117-dual-20260731.mp3" data-index="42">
+      <div class="thumb" style="background:linear-gradient(138deg, hsl(160, 72%, 92%), hsl(200, 78%, 74%))">#117</div>
+      <div class="info">
+        <h3 class="ep-title">117. 开源一段论文探索之旅：模型范式、Infra和数据、语言、多模态的完整变迁史</h3>
+        <span class="source">📎 张小珺商业访谈录 ep117</span>
       <p class="desc">在算力持续变便宜的世界里，谁越能用通用方法吃掉算力的红利、而非死守自己的手工设计，谁就越可能站在范式变迁的浪尖；而读论文，就是普通人站上这条浪的第一块垫脚石。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep117-dual-20260731.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-10-28</span><span class="meta-dot">·</span><span class="dur">17:11</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep117-dual-20260731.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>论文探索开源AI变迁—学习解读</h2>
@@ -15074,21 +15144,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <ul>
   <li>在算力持续变便宜的世界里，谁越能用通用方法吃掉算力的红利、而非死守自己的手工设计，谁就越可能站在范式变迁的浪尖；而读论文，就是普通人站上这条浪的第一块垫脚石。</li>
 </ul>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep116-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP116</span>
-        <span class="ep-date">2025-10-09</span>
-        <span class="dur">18:29</span>
-      </div>
-      <h3 class="ep-title">116. 吴明辉口述19年史：漫长的沉浮、痛苦急转、企业级Agentic Model、现实世界的数值游戏、IPO</h3>
-      <span class="source">📎 张小珺商业访谈录 ep116</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep116-dual-20260729.mp3" data-index="43">
+      <div class="thumb" style="background:linear-gradient(167deg, hsl(280, 72%, 95%), hsl(320, 78%, 78%))">#116</div>
+      <div class="info">
+        <h3 class="ep-title">116. 吴明辉口述19年史：漫长的沉浮、痛苦急转、企业级Agentic Model、现实世界的数值游戏、IPO</h3>
+        <span class="source">📎 张小珺商业访谈录 ep116</span>
       <p class="desc">这期录音前半段是一个做了19年to B的老兵在回忆漫长沉浮，后半段却藏着一个极锋利的认知跃迁。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep116-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-10-09</span><span class="meta-dot">·</span><span class="dur">18:29</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep116-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>企业级的Agentic Model：不是更聪明的模型，而是现实世界的数值游戏 — 学习解读</h2>
@@ -15375,24 +15446,25 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>企业级Agent不是更聪明的模型，而是在一个所有系统都封死了接口、数据都藏在老系统和人脑里的现实世界里，陪企业打一场数据——即X——的数值游戏。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP04</span>
-        <span class="ep-date">2025-09-11</span>
-        <span class="dur">2:42</span>
-      </div>
-      <h3 class="ep-title">姚顺雨Agent研究——6年OpenAI研究之路</h3>
-      <span class="source">📎 张小珺商业访谈录 #115（152min）嘉宾：姚顺雨（OpenAI研究员）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3" data-index="44">
+      <div class="thumb" style="background:linear-gradient(196deg, hsl(40, 72%, 86%), hsl(80, 78%, 82%))">#04</div>
+      <div class="info">
+        <h3 class="ep-title">姚顺雨Agent研究——6年OpenAI研究之路</h3>
+        <span class="source">📎 张小珺商业访谈录 #115（152min）嘉宾：姚顺雨（OpenAI研究员）</span>
       <p class="desc">你已经搞懂了 Attention 和 KV Cache。Agent 的核心其实是同一件事的延伸： 大模型：给一段文字 → 预测下一个字（Attention 看历史） Agent：  给一段环境 → 决定下一步动作（Agent 看环境+历史→行动）</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-09-11</span><span class="meta-dot">·</span><span class="dur">2:42</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep09-agent-6openai-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>姚顺雨：Agent 的下半场与交互方式的革命 — 学习解读</h2>
+<h2>姚顺雨：Agent 的下半场与交互方式的革命 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #115（02:31:32）</blockquote>
 <blockquote>嘉宾：姚顺雨（OpenAI 研究员，清华姚班 → 普林斯顿 PhD）</blockquote>
@@ -15671,17 +15743,19 @@ header p { color:#888; font-size:15px; line-height:1.5; }
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep115.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP115</span>
-        <span class="ep-date">2025-09-11</span>
-        <span class="dur">9:48</span>
-      </div>
-      <h3 class="ep-title">115. 对OpenAI姚顺雨3小时访谈：6年Agent研究、人与系统、吞噬的边界、既单极又多元的世界</h3>
-      <span class="source">📎 张小珺商业访谈录 #115（02:31:32）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep115.mp3" data-index="45">
+      <div class="thumb" style="background:linear-gradient(225deg, hsl(320, 72%, 89%), hsl(0, 78%, 66%))">#115</div>
+      <div class="info">
+        <h3 class="ep-title">115. 对OpenAI姚顺雨3小时访谈：6年Agent研究、人与系统、吞噬的边界、既单极又多元的世界</h3>
+        <span class="source">📎 张小珺商业访谈录 #115（02:31:32）</span>
       <p class="desc">AI 终于有了一把通用武器（语言推理），现在的问题不是"怎么造武器"，而是"朝哪里开枪"——定义好的任务比发明新的方法更重要。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep115.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-09-11</span><span class="meta-dot">·</span><span class="dur">9:48</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep115.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>姚顺雨：Agent 的下半场与交互方式的革命 — 学习解读</h2>
@@ -15960,21 +16034,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>*关联文档：OpenAI吴翼解读o1_学习解读_2026-07-25、Manus创始人肖弘_学习解读_2026-07-25、DeepMind谭捷_机器人与世界模型_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep114-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP114</span>
-        <span class="ep-date">2025-09-06</span>
-        <span class="dur">10:06</span>
-      </div>
-      <h3 class="ep-title">114. 与殷一、欧迪聊聊萨洛蒙：中国意外的增长阀门、小众越野跑与少女故事</h3>
-      <span class="source">📎 张小珺商业访谈录 ep114</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep114-dual-20260729.mp3" data-index="46">
+      <div class="thumb" style="background:linear-gradient(254deg, hsl(90, 72%, 92%), hsl(130, 78%, 70%))">#114</div>
+      <div class="info">
+        <h3 class="ep-title">114. 与殷一、欧迪聊聊萨洛蒙：中国意外的增长阀门、小众越野跑与少女故事</h3>
+        <span class="source">📎 张小珺商业访谈录 ep114</span>
       <p class="desc">一个70多岁的法国小众品牌，靠"专业不打折+小红书种草闭环+女性破圈"这套组合拳，在中国把核心用户从十万做到八百万。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep114-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-09-06</span><span class="meta-dot">·</span><span class="dur">10:06</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep114-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>萨洛蒙中国增长—学习解读</h2>
@@ -16610,38 +16685,40 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>它让我明白，真正的品牌爆发，从来不是风把猪吹起来。</p>
 <br/>
 <p>而是猪先学会了飞。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep21-1-k2-agentic-llm-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP01</span>
-        <span class="ep-date">2025-08-27</span>
-        <span class="dur">7:37</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep21-1-k2-agentic-llm-dual-20260729.mp3" data-index="47">
+      <div class="thumb" style="background:linear-gradient(283deg, hsl(200, 72%, 95%), hsl(240, 78%, 74%))">#01</div>
+      <div class="info">
+        <h3 class="ep-title">和杨植麟时隔1年的对话：K2、Agentic LLM、缸中之脑和站在无限的开端</h3>
+        <span class="source">📎 张小珺商业访谈录 #113（101分钟）嘉宾：杨植麟（月之暗面CEO）</span>
+        <div class="meta"><span class="ep-date">2025-08-27</span><span class="meta-dot">·</span><span class="dur">7:37</span></div>
       </div>
-      <h3 class="ep-title">和杨植麟时隔1年的对话：K2、Agentic LLM、缸中之脑和站在无限的开端</h3>
-      <span class="source">📎 张小珺商业访谈录 #113（101分钟）嘉宾：杨植麟（月之暗面CEO）</span>
-      <p class="desc"></p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep21-1-k2-agentic-llm-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep21-1-k2-agentic-llm-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <p>暂无详细解读</p>
+<p>暂无详细解读</p>
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep112-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP112</span>
-        <span class="ep-date">2025-08-18</span>
-        <span class="dur">12:27</span>
-      </div>
-      <h3 class="ep-title">112. 和广密聊大模型季报：分化与收敛、全家桶与垂直整合、L4体验与挖矿窗口</h3>
-      <span class="source">📎 节目：张小珺商业访谈录 ep112</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep112-dual-20260729.mp3" data-index="48">
+      <div class="thumb" style="background:linear-gradient(312deg, hsl(18, 72%, 86%), hsl(58, 78%, 78%))">#112</div>
+      <div class="info">
+        <h3 class="ep-title">112. 和广密聊大模型季报：分化与收敛、全家桶与垂直整合、L4体验与挖矿窗口</h3>
+        <span class="source">📎 节目：张小珺商业访谈录 ep112</span>
       <p class="desc">整个大模型世界的复杂度，其实可以压成三根支柱：**模型分化与收敛**（谁走窄路谁走宽路）、**全家桶 vs 垂直整合**（产品长什么样）、**L4 体验与挖矿窗口**（谁能先挖到金子）。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep112-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-08-18</span><span class="meta-dot">·</span><span class="dur">12:27</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep112-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>大模型季报：分化与收敛—学习解读</h2>
@@ -16927,21 +17004,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <ul>
   <li>相关笔记：大模型季报1_非共识与AGI主线、大模型季报8_AIWar与第三范式、大模型季报9_超导与降本</li>
 </ul>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep111-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP111</span>
-        <span class="ep-date">2025-08-07</span>
-        <span class="dur">13:19</span>
-      </div>
-      <h3 class="ep-title">111. 李一帆口述激光雷达11年创业史：你仔细想行业的机会来自哪？是国家、民族的机会</h3>
-      <span class="source">📎 张小珺商业访谈录 ep111</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep111-dual-20260729.mp3" data-index="49">
+      <div class="thumb" style="background:linear-gradient(341deg, hsl(210, 72%, 89%), hsl(250, 78%, 82%))">#111</div>
+      <div class="info">
+        <h3 class="ep-title">111. 李一帆口述激光雷达11年创业史：你仔细想行业的机会来自哪？是国家、民族的机会</h3>
+        <span class="source">📎 张小珺商业访谈录 ep111</span>
       <p class="desc">一个机器人/激光技术背景的华裔创业者，如何在11年里把"车和机器人的眼睛"——激光雷达——从20-30万一台的奢侈品，做成200美金的安全气囊级标配，并想明白行业的机会究竟来自哪里。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep111-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-08-07</span><span class="meta-dot">·</span><span class="dur">13:19</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep111-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>激光雷达11年—学习解读</h2>
@@ -17378,21 +17456,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <ul>
   <li>激光雷达这十一年教会我的不是&quot;怎么把一个贵的东西变便宜&quot;，而是&quot;机会不在于你手里那把锤子有多大，而在于你给它找的那个钉子后面，拴着多大的一个国家与时代的底子&quot;。</li>
 </ul>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep110-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP110</span>
-        <span class="ep-date">2025-07-30</span>
-        <span class="dur">14:35</span>
-      </div>
-      <h3 class="ep-title">110. 逐段讲解Kimi K2报告并对照ChatGPT Agent、Qwen3-Coder等：“系统工程的力量”</h3>
-      <span class="source">📎 张小珺商业访谈录 ep110</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep110-dual-20260729.mp3" data-index="50">
+      <div class="thumb" style="background:linear-gradient(10deg, hsl(160, 72%, 92%), hsl(200, 78%, 66%))">#110</div>
+      <div class="info">
+        <h3 class="ep-title">110. 逐段讲解Kimi K2报告并对照ChatGPT Agent、Qwen3-Coder等：“系统工程的力量”</h3>
+        <span class="source">📎 张小珺商业访谈录 ep110</span>
       <p class="desc">AI 的"点子"早就摆在台上了，真正的护城河是系统工程。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep110-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-07-30</span><span class="meta-dot">·</span><span class="dur">14:35</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep110-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Kimi K2 系统工程的力量 — 学习解读</h2>
@@ -17844,21 +17923,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>Kimi K2 的每个零件都不新鲜，新鲜的是：有人把整套流水线当成一门手艺，用惊人的工程量把它打磨到了极致——AI 的竞争，正在从&quot;拼灵感&quot;转向&quot;拼系统工程&quot;。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep109-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP109</span>
-        <span class="ep-date">2025-07-15</span>
-        <span class="dur">21:31</span>
-      </div>
-      <h3 class="ep-title">109. 机器人遭遇数据荒？与谢晨聊：仿真与合成数据、Meta天价收购和Alexandr Wang</h3>
-      <span class="source">📎 张小珺商业访谈录 ep109</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep109-dual-20260729.mp3" data-index="51">
+      <div class="thumb" style="background:linear-gradient(39deg, hsl(280, 72%, 95%), hsl(320, 78%, 70%))">#109</div>
+      <div class="info">
+        <h3 class="ep-title">109. 机器人遭遇数据荒？与谢晨聊：仿真与合成数据、Meta天价收购和Alexandr Wang</h3>
+        <span class="source">📎 张小珺商业访谈录 ep109</span>
       <p class="desc">机器人现在最缺的不是更强的算法，而是"喂给它"的数据本身——当真实世界能采到的数据又少又贵时，合成数据与仿真成了唯一的出路。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep109-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-07-15</span><span class="meta-dot">·</span><span class="dur">21:31</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep109-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>机器人数据荒—学习解读</h2>
@@ -18304,21 +18384,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>机器人缺的不是聪明，而是&quot;见过世面&quot;——当真实世界喂不起它的见识时，造假也要造得足够&quot;真&quot;（物理真），而谁掌握了把假做得比真还好用的能力，谁就握住了下一张入场券。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep108-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP108</span>
-        <span class="ep-date">2025-07-07</span>
-        <span class="dur">12:55</span>
-      </div>
-      <h3 class="ep-title">108. 余凯口述30年史：世界不止刀光剑影，是一部人来人往的江湖故事</h3>
-      <span class="source">📎 张小珺商业访谈录 ep108</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep108-dual-20260729.mp3" data-index="52">
+      <div class="thumb" style="background:linear-gradient(68deg, hsl(40, 72%, 86%), hsl(80, 78%, 74%))">#108</div>
+      <div class="info">
+        <h3 class="ep-title">108. 余凯口述30年史：世界不止刀光剑影，是一部人来人往的江湖故事</h3>
+        <span class="source">📎 张小珺商业访谈录 ep108</span>
       <p class="desc">余凯用30年口述史，讲的不只是AI史，更是一部"一个人如何在不同江湖里反复破局"的方法论手册。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep108-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-07-07</span><span class="meta-dot">·</span><span class="dur">12:55</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep108-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>AI三十年江湖：余凯口述史 — 学习解读</h2>
@@ -18594,21 +18675,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>看完这期我最大的收获是：江湖不是刀光剑影，而是一场关于&quot;看清本质、耐住寂寞、知进退&quot;的修行——余凯把科学家的冷静和江湖客的热诚揉进了一个人；真正的创业大佬不是在赌，而是在离悬崖尽可能远的地方，近乎笃定地狂奔，同时把每个相遇的人都当成人来相处。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep107-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP107</span>
-        <span class="ep-date">2025-06-29</span>
-        <span class="dur">13:04</span>
-      </div>
-      <h3 class="ep-title">107. 和梦秋的catch-up：创投挺无聊，也聊聊旅行读书和女性主义</h3>
-      <span class="source">📎 张小珺商业访谈录 ep107</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep107-dual-20260729.mp3" data-index="53">
+      <div class="thumb" style="background:linear-gradient(97deg, hsl(320, 72%, 89%), hsl(0, 78%, 78%))">#107</div>
+      <div class="info">
+        <h3 class="ep-title">107. 和梦秋的catch-up：创投挺无聊，也聊聊旅行读书和女性主义</h3>
+        <span class="source">📎 张小珺商业访谈录 ep107</span>
       <p class="desc">这期表面是创投圈的"水温报告"。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep107-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-06-29</span><span class="meta-dot">·</span><span class="dur">13:04</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep107-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>创投、旅行与女性主义 — 梦秋的学习解读</h2>
@@ -18877,21 +18959,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>这期本质上在说同一件事：无论 AI、资本还是人生，最值钱的都不是&quot;更会顺应&quot;，而是想清楚&quot;用户真正需要什么、自己真正想要什么&quot;。</p>
 <br/>
 <p>然后顺势而为——不被规划绑架，也不被讨好裹挟；该旅行旅行，该读书读书，该在周期里保持耐心就保持耐心。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep106-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP106</span>
-        <span class="ep-date">2025-06-22</span>
-        <span class="dur">12:27</span>
-      </div>
-      <h3 class="ep-title">106. 和王鹤聊，具身智能的学术边缘史和资本轰炸后的人为乱象</h3>
-      <span class="source">📎 张小珺商业访谈录 ep106</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep106-dual-20260729.mp3" data-index="54">
+      <div class="thumb" style="background:linear-gradient(126deg, hsl(90, 72%, 92%), hsl(130, 78%, 82%))">#106</div>
+      <div class="info">
+        <h3 class="ep-title">106. 和王鹤聊，具身智能的学术边缘史和资本轰炸后的人为乱象</h3>
+        <span class="source">📎 张小珺商业访谈录 ep106</span>
       <p class="desc">具身智能不是一个新的科学问题，它是一个出身于计算机视觉的小众学术流派被推上风口后，一路被资本吹大、又被各种人的野心和恐惧搅浑的过程。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep106-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-06-22</span><span class="meta-dot">·</span><span class="dur">12:27</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep106-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>具身智能：从学术边缘到资本轰炸后的人为乱象 — 学习解读</h2>
@@ -19235,21 +19318,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>具身智能的真相不是&quot;机械臂如何更稳&quot;，而是&quot;智能如何从'看一眼结论'升级到'边看边做边修正'&quot;——它卡在数据、卡在物理仿真、更卡在一群人是真心想干出生产力、还是只想把没有功能的机器卖给你；而这盘棋的输赢，就押在五年之内能不能跑出万台机的真身。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep105-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP105</span>
-        <span class="ep-date">2025-06-19</span>
-        <span class="dur">11:24</span>
-      </div>
-      <h3 class="ep-title">105. 和奔驰王忻聊，产业大转折下的德国汽车、话语权和技术battle</h3>
-      <span class="source">📎 张小珺商业访谈录 ep105</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep105-dual-20260728.mp3" data-index="55">
+      <div class="thumb" style="background:linear-gradient(155deg, hsl(200, 72%, 95%), hsl(240, 78%, 66%))">#105</div>
+      <div class="info">
+        <h3 class="ep-title">105. 和奔驰王忻聊，产业大转折下的德国汽车、话语权和技术battle</h3>
+        <span class="source">📎 张小珺商业访谈录 ep105</span>
       <p class="desc">一个在德尔福干了18年、本科学自动化的中国人，3年前跳进奔驰中国研发做VP，讲了一个特别反直觉的故事。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep105-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-06-19</span><span class="meta-dot">·</span><span class="dur">11:24</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep105-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>德国汽车产业转折 — 学习解读</h2>
@@ -19698,21 +19782,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>而豪华的本质始终没有变过——只是从&quot;我有你没有&quot;，进化成了&quot;我比你更懂你&quot;。</p>
 <br/>
 <p>最后留一个开放的问题给你：当2026年奔驰那台&quot;完全在中国设计生产&quot;的车真的落地，你会不会突然发现，话语权转移的下半场，比上半场更快？</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep104-dual-20260729.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP104</span>
-        <span class="ep-date">2025-06-15</span>
-        <span class="dur">7:50</span>
-      </div>
-      <h3 class="ep-title">104. 和Rokid祝铭明聊，吴妈、阿里、硬件创业黑森林的第11年</h3>
-      <span class="source">📎 张小珺商业访谈录 ep104</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep104-dual-20260729.mp3" data-index="56">
+      <div class="thumb" style="background:linear-gradient(184deg, hsl(18, 72%, 86%), hsl(58, 78%, 70%))">#104</div>
+      <div class="info">
+        <h3 class="ep-title">104. 和Rokid祝铭明聊，吴妈、阿里、硬件创业黑森林的第11年</h3>
+        <span class="source">📎 张小珺商业访谈录 ep104</span>
       <p class="desc">一个不想当网红、坚持做"别人能做但坚持不下去的事"的工程师创业者。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep104-dual-20260729.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-06-15</span><span class="meta-dot">·</span><span class="dur">7:50</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep104-dual-20260729.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>硬件创业黑森林 — Rokid 祝铭明 — 学习解读</h2>
@@ -20063,21 +20148,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>真正的入口迁移，不是发明一个新玩具，而是让&quot;触碰信息&quot;的那一下更近、更顺、更随时可用。</p>
 <br/>
 <p>祝铭明用11年，和一堆&quot;后悔做得太晚&quot;的果断决策，赌这扇门会慢慢从手机挪到脸上。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep103-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP103</span>
-        <span class="ep-date">2025-06-08</span>
-        <span class="dur">12:19</span>
-      </div>
-      <h3 class="ep-title">103. Lovart创始人陈冕复盘应用创业这两年：这一刻就是好爽啊！！哈哈哈哈哈</h3>
-      <span class="source">📎 张小珺商业访谈录 ep103</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep103-dual-20260728.mp3" data-index="57">
+      <div class="thumb" style="background:linear-gradient(213deg, hsl(210, 72%, 89%), hsl(250, 78%, 74%))">#103</div>
+      <div class="info">
+        <h3 class="ep-title">103. Lovart创始人陈冕复盘应用创业这两年：这一刻就是好爽啊！！哈哈哈哈哈</h3>
+        <span class="source">📎 张小珺商业访谈录 ep103</span>
       <p class="desc">陈冕用两次创业实践证明了一个有点反直觉的事：**AI应用创业最爽的时刻，不是钱到账，而是「你预测的未来真的发生了」**。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep103-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-06-08</span><span class="meta-dot">·</span><span class="dur">12:19</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep103-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>应用创业的底层逻辑 — 学习解读</h2>
@@ -20491,21 +20577,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>AI是比移动互联网更大的信息革命，判断终局靠常识、取胜靠垂类差异化，而创业最大的爽，是你孤独地预测了一个未来，然后亲手实现了它——那句「这一刻就是好爽啊」，是穿越所有至暗时刻之后的必然回声。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep102-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP102</span>
-        <span class="ep-date">2025-06-02</span>
-        <span class="dur">10:36</span>
-      </div>
-      <h3 class="ep-title">102. 和张祥雨聊，多模态研究的挣扎史和未来两年的2个“GPT-4时刻”</h3>
-      <span class="source">📎 张小珺商业访谈录 ep102</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep102-dual-20260728.mp3" data-index="58">
+      <div class="thumb" style="background:linear-gradient(242deg, hsl(160, 72%, 92%), hsl(200, 78%, 78%))">#102</div>
+      <div class="info">
+        <h3 class="ep-title">102. 和张祥雨聊，多模态研究的挣扎史和未来两年的2个“GPT-4时刻”</h3>
+        <span class="source">📎 张小珺商业访谈录 ep102</span>
       <p class="desc">张祥雨用十年研究串起一条线：视觉为什么始终找不到语言模型那样的"GPT时刻"、生成和理解为什么死活缝不到一起，以及为什么"思维链"这个看起来像RL的发明，其实是理解这一切的钥匙。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep102-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-06-02</span><span class="meta-dot">·</span><span class="dur">10:36</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep102-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>多模态研究的挣扎史与未来的GPT-4时刻 — 学习解读</h2>
@@ -20827,21 +20914,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>视觉的困局不在生图难，而在&quot;理解-生成-对齐&quot;在图像上天生割裂；破局的钥匙不在架构，而在把&quot;缺失的反思动作空间&quot;也喂进模型，让它在meta-CoT里第一次学会回头——这才是未来多模态GPT-4时刻的真正前置条件。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep101-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP101</span>
-        <span class="ep-date">2025-05-28</span>
-        <span class="dur">10:46</span>
-      </div>
-      <h3 class="ep-title">101. 对YouWare创始人明超平3小时访谈：今天Agent像大猩猩刚拿起一根烧火棍</h3>
-      <span class="source">📎 张小珺商业访谈录 ep101</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep101-dual-20260728.mp3" data-index="59">
+      <div class="thumb" style="background:linear-gradient(271deg, hsl(280, 72%, 95%), hsl(320, 78%, 82%))">#101</div>
+      <div class="info">
+        <h3 class="ep-title">101. 对YouWare创始人明超平3小时访谈：今天Agent像大猩猩刚拿起一根烧火棍</h3>
+        <span class="source">📎 张小珺商业访谈录 ep101</span>
       <p class="desc">这期访谈的核心不是某个产品，而是一个人如何用二十年的人生经验去理解"Agent"这个正在诞生的新物种。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep101-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-05-28</span><span class="meta-dot">·</span><span class="dur">10:46</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep101-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Agent时代，不是更聪明的猩猩，而是会使用工具的新物种 — 学习解读</h2>
@@ -21249,21 +21337,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>Agent就是刚拿起烧火棍的大猩猩——它离&quot;智人&quot;还差一个&quot;社会协作&quot;的距离，而这正是所有洞察和机会的发源地。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep100-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP100</span>
-        <span class="ep-date">2025-05-23</span>
-        <span class="dur">9:59</span>
-      </div>
-      <h3 class="ep-title">100. 对话奔驰全球CEO康林松：转型期CEO和转型之中的139岁奔驰</h3>
-      <span class="source">📎 张小珺商业访谈录 ep100</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep100-dual-20260728.mp3" data-index="60">
+      <div class="thumb" style="background:linear-gradient(300deg, hsl(40, 72%, 86%), hsl(80, 78%, 66%))">#100</div>
+      <div class="info">
+        <h3 class="ep-title">100. 对话奔驰全球CEO康林松：转型期CEO和转型之中的139岁奔驰</h3>
+        <span class="source">📎 张小珺商业访谈录 ep100</span>
       <p class="desc">一个139岁的汽车发明者，正站在百年一遇的行业大翻转中间，既要守住"值得向往"的豪华，又要学会"在中国为世界"地奔跑，这期聊的就是这个巨人的转身姿势。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep100-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-05-23</span><span class="meta-dot">·</span><span class="dur">9:59</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep100-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>奔驰CEO康林松：转型139年巨人 — 学习解读</h2>
@@ -21563,21 +21652,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <h3>一句话总结</h3>
 <br/>
 <p>康林松教会我的不是&quot;豪华车还有没有未来&quot;，而是：一个看似落后的传统巨头，正靠&quot;守住不可复制的体验、在核心上自研、在未知里果断迭代&quot;这三件事，试图把139年的惯性转成下一段起跑的动力——而它到底能不能赢，取决于一个我们谁也无法提前确认的问题：当科技平权的那一天真正到来，人们还愿不愿意为&quot;值得向往&quot;这四个字多付那份钱。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep99-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP99</span>
-        <span class="ep-date">2025-04-28</span>
-        <span class="dur">18:31</span>
-      </div>
-      <h3 class="ep-title">99. 对能量奇点创始人杨钊3小时访谈：人类驯服可控核聚变还有多少路程？</h3>
-      <span class="source">📎 张小珺商业访谈录 ep99</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep99-dual-20260728.mp3" data-index="61">
+      <div class="thumb" style="background:linear-gradient(329deg, hsl(320, 72%, 89%), hsl(0, 78%, 70%))">#99</div>
+      <div class="info">
+        <h3 class="ep-title">99. 对能量奇点创始人杨钊3小时访谈：人类驯服可控核聚变还有多少路程？</h3>
+        <span class="source">📎 张小珺商业访谈录 ep99</span>
       <p class="desc">核聚变不是一个"科学问题"，而是一个"成本问题"——它的科学可行性早已被验证，真正决定人类能不能驯服它、什么时间驯服它的，是度电成本能不能降到火电的水平。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep99-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-04-28</span><span class="meta-dot">·</span><span class="dur">18:31</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep99-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>人类驯服可控核聚变还有多少路程 — 能量奇点杨钊 学习解读</h2>
@@ -21969,21 +22059,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p><b>可控核聚变的钥匙不在&quot;能不能聚变&quot;，而在&quot;能不能把磁场做强的材料革命带来的成本塌缩&quot;——它是一场把&quot;火电度电成本100倍&quot;压成&quot;与火电同价&quot;，再用一套&quot;指数爬坡、先手垄断、拆解验证&quot;的方法论，在十年尺度内让文明跨一个数量级能源基座的长跑。</b></p>
 <br/>
 <p><b></b></p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/epVLA-dual-20260731.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EPVLA</span>
-        <span class="ep-date">2025-04-07</span>
-        <span class="dur">24:05</span>
-      </div>
-      <h3 class="ep-title">逐篇解析机器人基座模型和VLA经典论文（含投屏版）——“人就是最智能的VLA”</h3>
-      <span class="source">📎 张小珺商业访谈录（技术专场）+ 论文研读</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/epVLA-dual-20260731.mp3" data-index="62">
+      <div class="thumb" style="background:linear-gradient(358deg, hsl(90, 72%, 92%), hsl(130, 78%, 74%))">#VLA</div>
+      <div class="info">
+        <h3 class="ep-title">逐篇解析机器人基座模型和VLA经典论文（含投屏版）——“人就是最智能的VLA”</h3>
+        <span class="source">📎 张小珺商业访谈录（技术专场）+ 论文研读</span>
       <p class="desc">VLA 是把"大模型的脑子"装进"机器人的身体"的关键架构——它让机器人第一次能"看懂、听懂、还能动手做"。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/epVLA-dual-20260731.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-04-07</span><span class="meta-dot">·</span><span class="dur">24:05</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/epVLA-dual-20260731.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>机器人基座模型与 VLA：从&quot;看见&quot;到&quot;动手&quot; — 学习解读</h2>
@@ -22278,59 +22369,22 @@ header p { color:#888; font-size:15px; line-height:1.5; }
 <p>*关联文档：DeepMind谭捷_机器人与世界模型_学习解读_2026-07-25、姚顺雨OpenAI_Agent研究_学习解读_2026-07-25、DeepSeek_9篇论文_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-</div>
-<div class="player" id="player">
-  <span class="p-title" id="p-title"></span>
-  <audio id="audio" controls></audio>
-</div>
-<script>
-function playEp(btn, url) {
-  if (!url) { return; }
-  const player = document.getElementById('player');
-  const audio = document.getElementById('audio');
-  const pTitle = document.getElementById('p-title');
-  const title = btn.closest('.ep').querySelector('.ep-title').textContent;
-  document.querySelectorAll('.play-btn').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 播放'; });
-  btn.classList.add('playing'); btn.textContent = '⏸ 播放中';
-  pTitle.textContent = title;
-  audio.src = url;
-  player.classList.add('show');
-  audio.play();
-}
-function copyRSS() {
-  const url = 'https://aprilvkuo.github.io/ai-podcast//feed.rss';
-  navigator.clipboard.writeText(url).then(() => {
-    const btn = document.querySelector('.subscribe');
-    btn.textContent = '✅ 已复制！去播客App粘贴';
-    setTimeout(() => { btn.textContent = '📋 复制 RSS 链接'; }, 3000);
-  }).catch(() => {
-    prompt('手动复制 RSS 链接：', url);
-  });
-}
-function toggleNote(btn) {
-  const note = btn.nextElementSibling;
-  const isOpen = note.style.display !== 'none';
-  note.style.display = isOpen ? 'none' : 'block';
-  btn.textContent = isOpen ? '📖 查看笔记' : '📕 收起笔记';
-  btn.classList.toggle('active');
-}
-</script>
-</body>
-</html><div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep98-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP98</span>
-        <span class="ep-date">2025-04-06</span>
-        <span class="dur">12:28</span>
-      </div>
-      <h3 class="ep-title">98. 逐篇讲解机器人基座模型和VLA经典论文——“人就是最智能的VLA”</h3>
-      <span class="source">📎 张小珺商业访谈录（技术专场）+ 论文研读 ep98</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep98-dual-20260728.mp3" data-index="63">
+      <div class="thumb" style="background:linear-gradient(27deg, hsl(200, 72%, 95%), hsl(240, 78%, 78%))">#98</div>
+      <div class="info">
+        <h3 class="ep-title">98. 逐篇讲解机器人基座模型和VLA经典论文——“人就是最智能的VLA”</h3>
+        <span class="source">📎 张小珺商业访谈录（技术专场）+ 论文研读 ep98</span>
       <p class="desc">VLA 是把"大模型的脑子"装进"机器人的身体"的关键架构——它让机器人第一次能"看懂、听懂、还能动手做"。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep98-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-04-06</span><span class="meta-dot">·</span><span class="dur">12:28</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep98-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>机器人基座模型与 VLA：从&quot;看见&quot;到&quot;动手&quot; — 学习解读</h2>
@@ -22625,21 +22679,22 @@ function toggleNote(btn) {
 <p>*关联文档：DeepMind谭捷_机器人与世界模型_学习解读_2026-07-25、姚顺雨OpenAI_Agent研究_学习解读_2026-07-25、DeepSeek_9篇论文_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep97-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP97</span>
-        <span class="ep-date">2025-03-30</span>
-        <span class="dur">23:56</span>
-      </div>
-      <h3 class="ep-title">97. 25年Q1大模型季报：和广密聊当下最大非共识、AGI的主线与主峰</h3>
-      <span class="source">📎 张小珺商业访谈录 ep97</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep97-dual-20260728.mp3" data-index="64">
+      <div class="thumb" style="background:linear-gradient(56deg, hsl(18, 72%, 86%), hsl(58, 78%, 82%))">#97</div>
+      <div class="info">
+        <h3 class="ep-title">97. 25年Q1大模型季报：和广密聊当下最大非共识、AGI的主线与主峰</h3>
+        <span class="source">📎 张小珺商业访谈录 ep97</span>
       <p class="desc">广密在2025年Q1季报里，最大的转变是**重新坚信了预训练**——他跑到市场共识的对面，喊出"智能提升是唯一的主线，智能本身就是最大的应用"。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep97-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-03-30</span><span class="meta-dot">·</span><span class="dur">23:56</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep97-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>大模型季报1：非共识与AGI主线 — 学习解读</h2>
@@ -23039,21 +23094,22 @@ function toggleNote(btn) {
 <p><b>别人去抢应用、谈护城河的时候，广密把赌注全压在&quot;推智能本身&quot;上——因为他相信预训练决定天花板、智能是唯一主线，而AGI这场登山，赢家是那个敢把预训练和自定义继续往前推的人，而不是急着在山脚下建加油站的人。</b></p>
 <br/>
 <p>这条路对不对，两年内见分晓。但至少它给了一个极清醒的提问框架：看任何一家AI公司，先问一句——<b>你自己的base model，到底领先还是落后？</b></p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep96-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP96</span>
-        <span class="ep-date">2025-03-16</span>
-        <span class="dur">10:00</span>
-      </div>
-      <h3 class="ep-title">96. 和郎咸朋聊，自动驾驶10年演进史、关键技术细节和特斯拉</h3>
-      <span class="source">📎 张小珺商业访谈录 ep96</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep96-dual-20260728.mp3" data-index="65">
+      <div class="thumb" style="background:linear-gradient(85deg, hsl(210, 72%, 89%), hsl(250, 78%, 66%))">#96</div>
+      <div class="info">
+        <h3 class="ep-title">96. 和郎咸朋聊，自动驾驶10年演进史、关键技术细节和特斯拉</h3>
+        <span class="source">📎 张小珺商业访谈录 ep96</span>
       <p class="desc">一个亲历百度、理想两代自动驾驶研发十几年的工程师，把我们为什么要换三套技术路线、每次换路背后的"为什么"讲透了。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep96-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-03-16</span><span class="meta-dot">·</span><span class="dur">10:00</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep96-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>自动驾驶10年演进 — 学习解读</h2>
@@ -23367,21 +23423,22 @@ function toggleNote(btn) {
 <h3>一句话总结</h3>
 <br/>
 <p>自动驾驶这十年，其实是一部人类从&quot;试图把世界写进清单&quot;到&quot;终于学会把世界喂进模型&quot;的谦卑史——真正的进步不是我们看清了更多，而是我们承认了&quot;永远别想写全&quot;。</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep95-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP95</span>
-        <span class="ep-date">2025-03-02</span>
-        <span class="dur">14:55</span>
-      </div>
-      <h3 class="ep-title">95. 对Manus创始人肖弘的3小时访谈：世界不是线性外推，做博弈中的重要变量</h3>
-      <span class="source">📎 张小珺商业访谈录 #95（03:22:46）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep95-dual-20260728.mp3" data-index="66">
+      <div class="thumb" style="background:linear-gradient(114deg, hsl(160, 72%, 92%), hsl(200, 78%, 70%))">#95</div>
+      <div class="info">
+        <h3 class="ep-title">95. 对Manus创始人肖弘的3小时访谈：世界不是线性外推，做博弈中的重要变量</h3>
+        <span class="source">📎 张小珺商业访谈录 #95（03:22:46）</span>
       <p class="desc">一个 AI 应用创业者的生存法则：不预测未来，而是让自己成为博弈中那个重要的变量。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep95-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-03-02</span><span class="meta-dot">·</span><span class="dur">14:55</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep95-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>Manus 肖弘：世界不是线性外推 — 学习解读</h2>
@@ -23667,24 +23724,25 @@ function toggleNote(btn) {
 <p>*关联文档：李开复_AGI霸权与01万物_学习解读_2026-07-25、姚顺雨OpenAI_Agent研究_学习解读_2026-07-25、OpenAI吴翼解读o1_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP03</span>
-        <span class="ep-date">2025-02-11</span>
-        <span class="dur">3:57</span>
-      </div>
-      <h3 class="ep-title">DeepSeek 9篇论文解读——用十分之一成本追赶世界最强</h3>
-      <span class="source">📎 张小珺商业访谈录 #91（201min）嘉宾：何俊贤（香港科技大学助理教授）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3" data-index="67">
+      <div class="thumb" style="background:linear-gradient(143deg, hsl(280, 72%, 95%), hsl(320, 78%, 74%))">#03</div>
+      <div class="info">
+        <h3 class="ep-title">DeepSeek 9篇论文解读——用十分之一成本追赶世界最强</h3>
+        <span class="source">📎 张小珺商业访谈录 #91（201min）嘉宾：何俊贤（香港科技大学助理教授）</span>
       <p class="desc">国内媒体很少报道（当时都在追&quot;超越 GPT-4&quot;） DeepSeek LLM → DeepSeek MoE → DeepSeek V2 → DeepSeek V3 ↓                ↓                ↓              ↓</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-02-11</span><span class="meta-dot">·</span><span class="dur">3:57</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep07-deepseek-9-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>DeepSeek 9 篇论文：勇敢者的游戏 — 学习解读</h2>
+<h2>DeepSeek 9 篇论文：勇敢者的游戏 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #91（03:20:52）</blockquote>
 <blockquote>嘉宾：何俊贤（香港科技大学计算机系助理教授）</blockquote>
@@ -23992,17 +24050,19 @@ function toggleNote(btn) {
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep91-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP91</span>
-        <span class="ep-date">2025-02-11</span>
-        <span class="dur">11:50</span>
-      </div>
-      <h3 class="ep-title">91. 逐篇讲解DeepSeek关键9篇论文及创新点——“勇敢者的游戏”</h3>
-      <span class="source">📎 张小珺商业访谈录 #91（03:20:52）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep91-dual-20260728.mp3" data-index="68">
+      <div class="thumb" style="background:linear-gradient(172deg, hsl(40, 72%, 86%), hsl(80, 78%, 78%))">#91</div>
+      <div class="info">
+        <h3 class="ep-title">91. 逐篇讲解DeepSeek关键9篇论文及创新点——“勇敢者的游戏”</h3>
+        <span class="source">📎 张小珺商业访谈录 #91（03:20:52）</span>
       <p class="desc">DeepSeek 不是突然冒出来的——它用 9 篇论文、一年时间，每次只比别人多走一小步，最终走到了所有人前面。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep91-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2025-02-11</span><span class="meta-dot">·</span><span class="dur">11:50</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep91-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>DeepSeek 9 篇论文：勇敢者的游戏 — 学习解读</h2>
@@ -24310,21 +24370,22 @@ function toggleNote(btn) {
 <p>*关联文档：OpenAI吴翼解读o1_学习解读_2026-07-25、李开复_AGI霸权与01万物_学习解读_2026-07-25、姚顺雨OpenAI_Agent研究_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep81-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP81</span>
-        <span class="ep-date">2024-11-10</span>
-        <span class="dur">15:54</span>
-      </div>
-      <h3 class="ep-title">81. 和李开复聊聊：如果美国形成AGI霸权，我们应该怎么办？</h3>
-      <span class="source">📎 张小珺商业访谈录 #81（01:39:07）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep81-dual-20260728.mp3" data-index="69">
+      <div class="thumb" style="background:linear-gradient(201deg, hsl(320, 72%, 89%), hsl(0, 78%, 82%))">#81</div>
+      <div class="info">
+        <h3 class="ep-title">81. 和李开复聊聊：如果美国形成AGI霸权，我们应该怎么办？</h3>
+        <span class="source">📎 张小珺商业访谈录 #81（01:39:07）</span>
       <p class="desc">不追求第一个做出碾压式 AGI，而是用更低成本的推理 + 更繁荣的应用生态，构建抵抗垄断的护城河。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep81-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2024-11-10</span><span class="meta-dot">·</span><span class="dur">15:54</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep81-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>AGI 霸权与中国的第二条路 — 学习解读</h2>
@@ -24608,24 +24669,25 @@ function toggleNote(btn) {
 <p>*关联文档：OpenAI吴翼解读o1_学习解读_2026-07-25、DeepSeek_9篇论文_学习解读_2026-07-25、Manus创始人肖弘_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP02</span>
-        <span class="ep-date">2024-09-18</span>
-        <span class="dur">5:51</span>
-      </div>
-      <h3 class="ep-title">OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿</h3>
-      <span class="source">📎 张小珺商业访谈录 #75（74min）嘉宾：吴翼（清华交叉信息院助理教授，前OpenAI研究员）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3" data-index="70">
+      <div class="thumb" style="background:linear-gradient(230deg, hsl(90, 72%, 92%), hsl(130, 78%, 66%))">#02</div>
+      <div class="info">
+        <h3 class="ep-title">OpenAI前研究员吴翼解读o1——强化学习开启第二座金矿</h3>
+        <span class="source">📎 张小珺商业访谈录 #75（74min）嘉宾：吴翼（清华交叉信息院助理教授，前OpenAI研究员）</span>
       <p class="desc">你已经理解了 Attention → KV Cache → Agent 的演进。o1 代表的是另一条线： 预训练（语言模型）→ 后训练（RLHF对齐）→ 强化学习推理（o1） ↓                    ↓                      ↓</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2024-09-18</span><span class="meta-dot">·</span><span class="dur">5:51</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep06-openaio1-dual-20260725.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
-          <h2>o1 与强化学习：第二座金矿 — 学习解读</h2>
+<h2>o1 与强化学习：第二座金矿 — 学习解读</h2>
 <br/>
 <blockquote>来源：张小珺商业访谈录 #75（01:14:10）</blockquote>
 <blockquote>嘉宾：吴翼（边塞科技创始人、清华交叉信息院助理教授、前 OpenAI 研究员）</blockquote>
@@ -24941,17 +25003,19 @@ function toggleNote(btn) {
         </div>
       </div>
     </div>
-    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep75-dual-20260728.mp3">
-      <div class="ep-head">
-        <span class="ep-num">EP75</span>
-        <span class="ep-date">2024-09-18</span>
-        <span class="dur">9:58</span>
-      </div>
-      <h3 class="ep-title">75. 和OpenAI前研究员吴翼解读o1：吹响了开挖第二座金矿的号角</h3>
-      <span class="source">📎 张小珺商业访谈录 #75（01:14:10）</span>
+
+    <div class="ep" data-url="https://aprilvkuo.github.io/ai-podcast/episodes/ep75-dual-20260728.mp3" data-index="71">
+      <div class="thumb" style="background:linear-gradient(259deg, hsl(200, 72%, 95%), hsl(240, 78%, 70%))">#75</div>
+      <div class="info">
+        <h3 class="ep-title">75. 和OpenAI前研究员吴翼解读o1：吹响了开挖第二座金矿的号角</h3>
+        <span class="source">📎 张小珺商业访谈录 #75（01:14:10）</span>
       <p class="desc">预训练的金矿快挖完了，强化学习是第二座金矿——它让 AI 从"知道很多"进化到"会推理"。</p>
-      <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep75-dual-20260728.mp3')">▶ 播放</button>
-      <button class="expand-btn" onclick="toggleNote(this)">📖 查看笔记</button>
+        <div class="meta"><span class="ep-date">2024-09-18</span><span class="meta-dot">·</span><span class="dur">9:58</span></div>
+      </div>
+      <div class="actions">
+        <button class="play-btn" onclick="playEp(this, 'https://aprilvkuo.github.io/ai-podcast/episodes/ep75-dual-20260728.mp3')">▶</button>
+      </div>
+      <button class="expand-btn" onclick="toggleNote(this)">📖 笔记</button>
       <div class="note-content" style="display:none">
         <div class="note-inner">
 <h2>o1 与强化学习：第二座金矿 — 学习解读</h2>
@@ -25274,8 +25338,46 @@ function toggleNote(btn) {
 <p>*关联文档：DeepSeek_9篇论文_学习解读_2026-07-25、姚顺雨OpenAI_Agent研究_学习解读_2026-07-25、李开复_AGI霸权与01万物_学习解读_2026-07-25*</p>
 <br/>
 <p>*记录日期：2026-07-25*</p>
-
         </div>
       </div>
     </div>
-    
+
+</div>
+<div class="player" id="player">
+  <span class="p-title" id="p-title"></span>
+  <audio id="audio" controls></audio>
+</div>
+<script>
+function playEp(btn, url) {
+  if (!url) { return; }
+  const player = document.getElementById('player');
+  const audio = document.getElementById('audio');
+  const pTitle = document.getElementById('p-title');
+  const title = btn.closest('.ep').querySelector('.ep-title').textContent;
+  document.querySelectorAll('.play-btn').forEach(b => { b.classList.remove('playing'); b.textContent = '▶'; });
+  btn.classList.add('playing'); btn.textContent = '⏸';
+  pTitle.textContent = title;
+  audio.src = url;
+  player.classList.add('show');
+  audio.play();
+}
+function copyRSS() {
+  const url = 'https://aprilvkuo.github.io/ai-podcast//feed.rss';
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.querySelector('.subscribe');
+    btn.textContent = '✅ 已复制！去播客App粘贴';
+    setTimeout(() => { btn.textContent = '📋 复制 RSS 链接'; }, 3000);
+  }).catch(() => {
+    prompt('手动复制 RSS 链接：', url);
+  });
+}
+function toggleNote(btn) {
+  const note = btn.nextElementSibling;
+  const isOpen = note.style.display !== 'none';
+  note.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? '📖 笔记' : '📕 收起';
+  btn.classList.toggle('active');
+}
+</script>
+</body>
+</html>
